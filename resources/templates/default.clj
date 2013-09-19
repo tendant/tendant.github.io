@@ -38,15 +38,16 @@
         ]]]]]]]
   [:div.content
    [:div.container
-    (if (= (:type metadata) :post)
-      [:div.row
-       [:div.col-md-12
-        content
+    [:div.row
+     [:div.col-md-12
+      content
+      (if (= (:type metadata) :post)
         [:div.shares
          [:a.twitter-share-button {:href "https://twitter.com/share" :data-via "tendant"} "Tweet"]]
         [:br]
-        [:div#disqus_thread]]]
-      content)
+        [:div#disqus_thread])]]
+    ;; content
+    
     [:script {:src "//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"}]
     [:script {:src "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"}]
     [:script {:src "//google-code-prettify.googlecode.com/svn/loader/run_prettify.js"}]
@@ -58,6 +59,24 @@
      [:div.col-md-12
       [:p "Built with "
        [:a {:href "http://getbootstrap.com/"} "Bootstrap"] " and "
-       [:a {:ref "https://github.com/nakkaya/static"} "Static"]
+       [:a {:href "https://github.com/nakkaya/static"} "Static"]
+       [:a
+        {:href "http://creativecommons.org/licenses/by-sa/3.0/deed.en_US",
+         :rel "license"}
+        [:img
+         {:src "http://i.creativecommons.org/l/by-sa/3.0/88x31.png",
+          :style "border-width:0",
+          :alt "Creative Commons License"}]]
        [:br]
-       "&copy; 2013 " [:a {:href "http://blog.leiwang.info"} "Lei Wang"]]]]]]]]
+       "This work by "
+       [:a
+        {:rel "cc:attributionURL",
+         :property "cc:attributionName",
+         :href "blog.leiwang.info"}
+        "blog.leiwang.info"]
+       " is licensed under a "
+       [:a
+        {:href "http://creativecommons.org/licenses/by-sa/3.0/deed.en_US",
+         :rel "license"}
+        "Creative Commons Attribution-ShareAlike 3.0 Unported License"]
+       ".\n"]]]]]]]
