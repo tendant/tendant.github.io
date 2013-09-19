@@ -1,0 +1,35 @@
+#+title: XTerm 中文相关设定
+
+Testing content
+
+#+begin_src 
+xTerm*locale:true
+xterm*fontMenu*fontdefault*Label:Default
+! xterm*faceName: Monaco:antialias=True:pixelsize=15
+! xTerm*faceNameDoublesize:wenquanyi bitmap song:pixelsize=14:antialias=True
+xterm*xftAntialias:true
+! cjkWidth has to be false.
+xterm*cjkWidth:false 
+xterm*preeditType:Root
+## XTerm*font: -misc-fixed-medium-r-normal-*-18-120-100-100-c-90-iso10646-1
+## XTerm*wideFont: -misc-fixed-medium-r-normal-*-18-120-100-100-c-180-iso10646-1
+! English font
+! xterm*faceName: DejaVu Sans Mono:antialias=True:pixelsize=14
+xterm*faceName: DejaVu Sans Mono:antialias=True
+! Chinese font
+! xterm*faceNameDoublesize: WenQuanYi Micro Hei:pixelsize=14
+xterm*faceNameDoublesize: WenQuanYi Micro Hei
+xterm*faceSize: 10
+xterm*faceSize1: 8
+xterm*faceSize2: 10
+xterm*faceSize3: 12
+xterm*faceSize4: 14
+xterm*faceSize5: 16
+xterm*faceSize6: 20
+! For X11: Make sure it really is a Meta key. Use xev to find out what keysym your Meta key generates. It should be either Meta_L or Meta_R. If it isn't, use `xmodmap' to fix the situation. If Meta does generate Meta_L or Meta_R, but M-x produces a non-ASCII character, put this in your ~/.Xdefaults file:
+! XTerm*eightBitInput:   false
+! XTerm*eightBitOutput:  true
+
+XTerm*eightBitInput:   false
+XTerm*eightBitOutput:  true
+#+end_src

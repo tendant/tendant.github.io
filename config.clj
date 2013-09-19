@@ -1,4 +1,5 @@
 [:site-title "blog.leiwang.info"
+ :emacs "/usr/bin/emacs"
  :site-description "blog.leiwang.info"
  :site-url "http://blog.leiwang.info"
  :in-dir "resources/"
