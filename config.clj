@@ -8,5 +8,10 @@
  :encoding "UTF-8"
  :blog-as-index false
  :create-archives false
+ :org-export-command (progn
+                      (setq org-export-with-toc nil)
+                      (org-html-export-as-html nil nil nil t nil)
+                      (switch-to-buffer "*Org HTML Export*")
+                      (princ (buffer-string)))
  :atomic-build true]
 

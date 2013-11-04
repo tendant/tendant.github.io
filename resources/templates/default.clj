@@ -38,16 +38,15 @@
         ]]]]]]]
   [:div.content
    [:div.container
-    [:div.row
-     [:div.col-md-12
-      content
-      (if (= (:type metadata) :post)
+    (if (= (:type metadata) :post)
+      [:div.row
+       [:div.col-md-12
+        content
         [:div.shares
          [:a.twitter-share-button {:href "https://twitter.com/share" :data-via "tendant"} "Tweet"]]
         [:br]
-        [:div#disqus_thread])]]
-    ;; content
-    
+        [:div#disqus_thread]]]
+      content)
     [:script {:src "//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"}]
     [:script {:src "//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0-rc2/js/bootstrap.min.js"}]
     [:script {:src "//google-code-prettify.googlecode.com/svn/loader/run_prettify.js"}]
