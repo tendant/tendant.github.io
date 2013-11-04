@@ -16,7 +16,7 @@
   [:title (:title metadata)]]
  [:body
   [:div.header
-   [:nav.navbar.navbar-default.navbar-fixed-top {:role "navigation"}
+   [:nav.navbar.navbar-default.navbar-static-top {:role "navigation"}
     [:div.container
      [:div.navbar-header
       [:button.navbar-toggle {:type "button" :data-toggle "collapse" :data-target ".navbar-ex1-collapse"}
