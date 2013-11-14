@@ -1,20 +1,21 @@
 {:title "blog.leiwang.info"}
 
 [:div
- [:div.row
-  [:div.col-md-12
-   [:h1 "[untitled]"]]]
+ ;; [:div.row
+ ;;  [:div.col-md-12
+ ;;   [:h1 "[untitled]"]]]
  [:div.row
   [:div.col-md-6
    [:p.lead.text-muted
     "Random thoughts"]]]
- [:div.row
-  [:div.col-md-12
-   [:p
-    ]
-   [:p
-    ]]]
- [:br]
+ ;; [:div.row
+ ;;  [:div.col-md-12
+ ;;   Add self instruction.
+ ;;   [:p
+ ;;    ]
+ ;;   [:p
+ ;;    ]
+ ;;   ]]
  [:div.row
   [:div.col-md-6
    [:h4 "Recent Blog Posts"]
