@@ -1,2 +1,2 @@
 java -jar ../static-app.jar --build
-rsync -avz html/ /var/www/blog/
+# rsync -avz html/ /var/www/blog/
