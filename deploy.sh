@@ -9,7 +9,7 @@ git co master -- .gitignore
 ./build.sh
 cp -r html/* .
 
-rm CNAME
-rm config.clj
-rm build.sh
-rm -r resources
+# rm CNAME
+# rm config.clj
+# rm build.sh
+# rm -r resources
