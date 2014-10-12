@@ -57,8 +57,9 @@
     [:div.row
      [:div.col-md-12
       [:p "Built with "
-       [:a {:href "http://getbootstrap.com/"} "Bootstrap"] " and "
-       [:a {:href "https://github.com/nakkaya/static"} "Static"]
+       [:a {:href "http://getbootstrap.com/"} "Bootstrap"]
+       " and "
+       [:a {:href "https://github.com/nakkaya/static"} "Static "]
        [:a
         {:href "http://creativecommons.org/licenses/by-sa/3.0/deed.en_US",
          :rel "license"}
