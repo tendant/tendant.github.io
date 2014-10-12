@@ -5,6 +5,7 @@ set -e
 git co master
 
 git co static -- .
+git co master -- .gitignore
 ./build.sh
 cp -r html/* .
 
