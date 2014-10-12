@@ -16,3 +16,8 @@ cp -r html/* .
 # rm build.sh
 # rm deploy.sh
 # rm -r resources
+
+git add -A
+git commit -m "deployed at `date`"
+
+git co static
