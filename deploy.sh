@@ -6,7 +6,7 @@ git co master
 
 git co static -- .
 ./build.sh
-cp -r resources/html/* .
+cp -r html/* .
 
 rm CNAME
 rm config.clj
