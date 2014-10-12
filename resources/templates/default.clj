@@ -28,7 +28,7 @@
       ]
      [:div.collapse.navbar-collapse.navbar-ex1-collapse
       [:ul.nav.navbar-nav
-       [:li [:a {:href "/blog.html"} "Blog"]]
+       ;; [:li [:a {:href "/blog.html"} "Blog"]]
        ;; [:li [:a {:href "/projects.html"} "Projects"]]
        ;; [:li [:a {:href "/about.html"} "About"]]
        ]
