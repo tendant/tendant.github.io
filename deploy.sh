@@ -6,8 +6,10 @@ git co master
 
 git co static -- .
 git co master -- .gitignore
-# ./build.sh
-# cp -r html/* .
+git reset
+
+./build.sh
+cp -r html/* .
 
 # rm CNAME
 # rm config.clj
