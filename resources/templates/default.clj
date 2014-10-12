@@ -11,8 +11,8 @@
   [:link {:rel "shortcut icon" :href "/images/favicon.ico" :type "image/x-icon"}]
   [:link {:rel "stylesheet" :type "text/css" :href "//cdnjs.cloudflare.com/ajax/libs/font-awesome/3.2.1/css/font-awesome.min.css"}]
   [:link {:rel "stylesheet" :type "text/css" :href "//fonts.googleapis.com/css?family=Source+Code+Pro|Open+Sans"}]
-  [:link {:rel "stylesheet" :type "text/css" :href "/css/bootstrap.min.css"}]
-  [:link {:rel "stylesheet" :type "text/css" :href "/css/customization.css"}]
+  [:link {:rel "stylesheet" :type "text/css" :href "css/bootstrap.min.css"}]
+  [:link {:rel "stylesheet" :type "text/css" :href "css/customization.css"}]
   [:title (:title metadata)]]
  [:body
   [:div.header
