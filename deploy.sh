@@ -14,4 +14,5 @@ cp -r html/* .
 # rm CNAME
 # rm config.clj
 # rm build.sh
+# rm deploy.sh
 # rm -r resources
