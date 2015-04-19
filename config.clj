@@ -24,6 +24,19 @@
               '(set-default buffer-file-coding-system 'utf-8-unix)
               '(set-default-coding-systems 'utf-8-unix)
               '(prefer-coding-system 'utf-8-unix)
-              '(set-default default-buffer-file-coding-system 'utf-8-unix)]
+              '(set-default default-buffer-file-coding-system 'utf-8-unix)
+              '(defadvice org-html-paragraph (before fsh-org-html-paragraph-advice
+                                      (paragraph contents info) activate)
+  "Join consecutive Chinese lines into a single long line without
+unwanted space when exporting org-mode to html."
+  (let ((fixed-contents)
+        (orig-contents (ad-get-arg 1))
+        (reg-han "[[:multibyte:]]"))
+    (setq fixed-contents (replace-regexp-in-string
+                          ;; 这一行是匹配上一行末和下一行头都是中文的情况, 但是这样的话遇上"中文\nenglish"就仍然有空格
+                          ;; (concat "\\(" reg-han "\\) *\n *\\(" reg-han "\\)")
+                          (concat "\\(" reg-han "\\) *\n *")
+                          "\\1" orig-contents))
+    (ad-set-arg 1 fixed-contents)))]
  :atomic-build true]
 
