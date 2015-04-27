@@ -38,8 +38,7 @@
   [{:keys [contacts author]} _]
   [:footer
    [:p
-    "This website was "
-    (link-to "https://github.com/RyanMcG/incise" "incised") \.]])
+    ""]])
 
 (deflayout base
   "The default page/post layout."
