@@ -1,4 +1,4 @@
-{:transformers [:base-layout]}
+{:transformers [:myblog-layout]}
 
 (require '[hiccup.core :refer [html]])
 
