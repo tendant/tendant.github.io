@@ -14,7 +14,7 @@
  ;; Incise assumes parsers only write files in this directory.
  :out-dir "resources/public"
  ;; This map will have meta maps from a parsed files merged into it.
- :parse-defaults {:transformers [:html-skeleton-layout]}
+ :parse-defaults {:transformers [:myblog-layout]}
  ;; Specify the root where the deployed or onced website will be served from.
  ;; This is particularly useful for github pages deploys. Default is "". Which
  ;; indicates that the root of your website is deployed at the root of a domain.
