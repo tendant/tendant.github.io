@@ -12,7 +12,9 @@
                     [element :refer :all]))
   (:import [java.io FileNotFoundException]))
 
-(defn stylesheets [] [])
+(defn stylesheets []
+  ["css/bootstrap.min.css"
+   "css/customization.css"])
 
 (defn javascripts [] [])
 
@@ -26,7 +28,29 @@
    [:meta {:name "viewport" :content "width=device-width, initial-scale=1.0"}]
    (apply include-css (keep identity (stylesheets)))])
 
-(defpartial header "A blank header" [] nil)
+(defpartial header "A blank header"
+  []
+  [:div.header
+   [:nav.navbar.navbar-default.navbar-static-top {:role "navigation"}
+    [:div.container
+     [:div.navbar-header
+      [:button.navbar-toggle {:type "button" :data-toggle "collapse" :data-target ".navbar-ex1-collapse"}
+      [:span.sr-only "Toggle navigation"]
+      [:span.icon-bar]
+      [:span.icon-bar]
+      [:span.icon-bar]]
+      [:a.navbar-brand {:href "#"} "Lei Wang"]
+      ]
+     [:div.collapse.navbar-collapse.navbar-ex1-collapse
+      [:ul.nav.navbar-nav
+       ;; [:li [:a {:href "/blog.html"} "Blog"]]
+       ;; [:li [:a {:href "/projects.html"} "Projects"]]
+       ;; [:li [:a {:href "/about.html"} "About"]]
+       ]
+      [:ul.nav.navbar-nav.navbar-right
+       [:li [:a.icon-header {:href "http://github.com/tendant"} [:i.icon-github.icon-2x]]
+       [:li [:a.icon-header {:href "http://twitter.com/tendant"} [:i.icon-twitter.icon-2x]]
+        ]]]]]]])
 
 (defpartial content
   "A very basic content partial."
