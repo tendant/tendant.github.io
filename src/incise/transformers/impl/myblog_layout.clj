@@ -55,7 +55,10 @@
 (defpartial content
   "A very basic content partial."
   [_ {:keys [content]}]
-  (render-content content))
+  [:div.container
+   [:div.row
+    [:div.col-md-12
+     (render-content content)]]])
 
 (defpartial footer
   "A very basic footer crediting this project."
