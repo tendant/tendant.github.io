@@ -13,8 +13,8 @@
   (:import [java.io FileNotFoundException]))
 
 (defn stylesheets []
-  ["css/bootstrap.min.css"
-   "css/customization.css"])
+  ["/assets/css/bootstrap.min.css"
+   "/assets/css/customization.css"])
 
 (defn javascripts [] [])
 
