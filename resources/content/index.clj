@@ -2,4 +2,11 @@
 
 (require '[hiccup.core :refer [html]])
 
-(html [:body "good"])
+(println parses)
+
+(defn post [{:keys [title] :as parse}]
+  [:p title])
+
+(html [:ul.posts
+       (->> parses
+            (map post))])
