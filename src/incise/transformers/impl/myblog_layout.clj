@@ -67,6 +67,11 @@
    [:p
     ""]])
 
+(defpartial ga-script
+  "GA script code"
+  [:script
+   "\n (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){\n (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),\n m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)\n })(window,document,'script','//www.google-analytics.com/analytics.js','ga');\n\n ga('create', 'UA-6332912-4', 'auto');\n ga('send', 'pageview');\n\n"])
+
 (deflayout base
   "The default page/post layout."
   []
@@ -77,6 +82,7 @@
       (header)
       [:div#content [:article (content)]]
       (footer)
-      (apply include-js (remove nil? (javascripts)))])))
+      (apply include-js (remove nil? (javascripts)))
+      (ga-script)])))
 
 (register :myblog-layout base)
