@@ -28,7 +28,7 @@
           ;; deploy workflow>
           ;; The name of the orphaned branch to create and use for generated
           ;; content.
-          :branch "gh-pages" ;; This is also the default value.
+          :branch "master" ;; This is also the default value.
           ;; Commit after compiling into the specified branch? If not you will
           ;; have to commit yourself.
           :commit true
