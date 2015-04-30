@@ -20,7 +20,7 @@
  ;; indicates that the root of your website is deployed at the root of a domain.
  ;; The incise website is deployed at http://www.ryanmcg.com/incise/. For it the
  ;; uri-root is "incise"
- :uri-root "http://leiwang.info/blog"
+ :uri-root "http://blog.leiwang.info"
  ;; Deploy specific configuration
  :deploy {;; Specify the name of the deploy workflow to be used in this project
           :workflow :git-branch
