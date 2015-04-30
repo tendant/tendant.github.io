@@ -33,4 +33,4 @@
           ;; have to commit yourself.
           :commit true
           ;; Push after commiting?
-          :push false}}
+          :push true}}
