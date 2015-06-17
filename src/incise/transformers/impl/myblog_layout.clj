@@ -39,7 +39,7 @@
       [:span.icon-bar]
       [:span.icon-bar]
       [:span.icon-bar]]
-      [:a.navbar-brand {:href "#"} "Lei Wang"]
+      [:a.navbar-brand {:href "#"} "Lei"]
       ]
      [:div.collapse.navbar-collapse.navbar-ex1-collapse
       [:ul.nav.navbar-nav
