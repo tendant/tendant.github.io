@@ -1,6 +1,6 @@
 {:title "Add ReactNative to an existing Swift project"
  :layout :post
- :tags ["iOS" "Swift" "ReactNative"]
+ :tags ["iOS" "Swift" "React Native"]
  :navbar? false}
 
 TL;DR Demo project source code can be found from [Github](https://github.com/tendant/ReactNativeSwiftDemo)
