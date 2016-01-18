@@ -9,7 +9,7 @@ After hearing a lot good things about ReactNative recently, I finally got some t
 
 A little background about our iOS app, we started app around July 2015. By the time, ReactNative was just released with iOS support, and Swift 2.0 was just released in June. We built some prototypes to compare Swift with ReactNative, and decided to go with Swift. Since we are also building the web app using ReactJS, we have seen a lot benefit by using React way of building UI. However we already have a native app built with Swift, we want to try it with our existing app before committing to ReactNative. Hence I started to look at the way of introducing ReactNative.
 
-A lot of steps came from [this gist](https://gist.github.com/boopathi/27d21956fefcb5b168fe), the content is a little bit old, and things have been changed since then. It is still good for reference.
+A lot of steps came from [this gist](https://gist.github.com/boopathi/27d21956fefcb5b168fe), the original gist content is a little bit outdated, and things have been changed since then. It is still good for reference. I also forked and updated the [gist](https://gist.github.com/tendant/6a1ea9e363f5ca4d73a1).
 
 Before start, make sure the ReactNative requirement is met. [ReactNative requirements](https://facebook.github.io/react-native/docs/getting-started.html#requirements)
 
