@@ -1,4 +1,4 @@
-{:title "Add ReactNative to an existing Swift project"
+{:title "Add React Native to an existing Swift project"
  :layout :post
  :tags ["iOS" "Swift" "React Native"]
  :navbar? false}

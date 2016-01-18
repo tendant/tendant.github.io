@@ -12,7 +12,7 @@ http://blog.leiwang.info/
 Random stuff
 </description>
 <lastBuildDate>
-Mon, 18 Jan 2016 01:33:20 -0800
+Mon, 18 Jan 2016 01:34:45 -0800
 </lastBuildDate>
 <generator>
 clj-rss
@@ -25,7 +25,7 @@ http://blog.leiwang.info/posts/2016-01-17-add-reactnative-in-swift-project.html
 http://blog.leiwang.info/posts/2016-01-17-add-reactnative-in-swift-project.html
 </link>
 <title>
-Add ReactNative to an existing Swift project
+Add React Native to an existing Swift project
 </title>
 <description>
 &lt;p&gt;TL;DR Demo project source code can be found from &lt;a href='https://github.com/tendant/ReactNativeSwiftDemo'&gt;Github&lt;/a&gt;&lt;/p&gt;&lt;p&gt;After hearing a lot good things about ReactNative recently, I finally got some time to play with ReactNative during last holiday season.&lt;/p&gt;&lt;p&gt;A little background about our iOS app, we started app around July 2015. By the time, ReactNative was just released with iOS support, and Swift 2.0 was just released in June. We built some prototypes to compare Swift with ReactNative, and decided to go with Swift. Since we are also building the web app using ReactJS, we have seen a lot benefit by using React way of building UI. However we already have a native app built with Swift, we want to try it with our existing app before committing to ReactNative. Hence I started to look at the way of introducing ReactNative.&lt;/p&gt;&lt;p&gt;A lot of steps came from &lt;a href='https://gist.github.com/boopathi/27d21956fefcb5b168fe'&gt;this gist&lt;/a&gt;, the original gist content is a little bit outdated, and things have been changed since then. It is still good for reference. I also forked and updated the &lt;a href='https://gist.github.com/tendant/6a1ea9e363f5ca4d73a1'&gt;gist&lt;/a&gt;.&lt;/p&gt;&lt;p&gt;Before start, make sure the ReactNative requirement is met. &lt;a href='https://facebook.github.io/react-native/docs/getting-started.html#requirements'&gt;ReactNative requirements&lt;/a&gt;&lt;/p&gt;&lt;h3&gt;&lt;a name=&quot;create&amp;#95;a&amp;#95;project&amp;#95;in&amp;#95;xcode&amp;#95;with&amp;#95;default&amp;#95;setting.&quot;&gt;&lt;/a&gt;Create a project in XCode with default setting.&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;iOS -&amp;gt; Application -&amp;gt; Single View Application
