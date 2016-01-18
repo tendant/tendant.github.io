@@ -12,10 +12,82 @@ http://blog.leiwang.info/
 Random stuff
 </description>
 <lastBuildDate>
-Sun, 17 Jan 2016 16:51:01 -0800
+Mon, 18 Jan 2016 01:19:52 -0800
 </lastBuildDate>
 <generator>
 clj-rss
 </generator>
+<item>
+<guid>
+http://blog.leiwang.info/posts/2016-01-17-add-reactnative-in-swift-project.html
+</guid>
+<link>
+http://blog.leiwang.info/posts/2016-01-17-add-reactnative-in-swift-project.html
+</link>
+<title>
+Add ReactNative to an existing Swift project
+</title>
+<description>
+&lt;p&gt;TL;DR Demo project source code can be found from &lt;a href='https://github.com/tendant/ReactNativeSwiftDemo'&gt;Github&lt;/a&gt;&lt;/p&gt;&lt;p&gt;After hearing a lot good things about ReactNative recently, I finally got some time to play with ReactNative during last holiday season.&lt;/p&gt;&lt;p&gt;A little background about our iOS app, we started app around July 2015. By the time, ReactNative was just released with iOS support, and Swift 2.0 was just released in June. We built some prototypes to compare Swift with ReactNative, and decided to go with Swift. Since we are also building the web app using ReactJS, we have seen a lot benefit by using React way of building UI. However we already have a native app built with Swift, we want to try it with our existing app before committing to ReactNative. Hence I started to look at the way of introducing ReactNative.&lt;/p&gt;&lt;p&gt;A lot of steps came from &lt;a href='https://gist.github.com/boopathi/27d21956fefcb5b168fe'&gt;this gist&lt;/a&gt;, the content is a little bit old, and things have been changed since then. It is still good for reference.&lt;/p&gt;&lt;p&gt;Before start, make sure the ReactNative requirement is met. &lt;a href='https://facebook.github.io/react-native/docs/getting-started.html#requirements'&gt;ReactNative requirements&lt;/a&gt;&lt;/p&gt;&lt;h3&gt;&lt;a name=&quot;create&amp;#95;a&amp;#95;project&amp;#95;in&amp;#95;xcode&amp;#95;with&amp;#95;default&amp;#95;setting.&quot;&gt;&lt;/a&gt;Create a project in XCode with default setting.&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;iOS -&amp;gt; Application -&amp;gt; Single View Application
+Language: Swift&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;&lt;a name=&quot;add&amp;#95;reactnative&amp;#95;dependency.&quot;&gt;&lt;/a&gt;Add ReactNative dependency.&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Create package.json file in project directory&lt;/li&gt;&lt;li&gt;add dependecy &lt;code&gt;&amp;quot;react-native&amp;quot;: &amp;quot;&amp;#94;0.17.0&amp;quot;&lt;/code&gt;&lt;/li&gt;&lt;li&gt;run &lt;code&gt;npm install&lt;/code&gt;&lt;/li&gt;&lt;/ol&gt;&lt;h3&gt;&lt;a name=&quot;add&amp;#95;reactnative&amp;#95;project&amp;#95;to&amp;#95;linked&amp;#95;framework&amp;#95;and&amp;#95;libraries.&quot;&gt;&lt;/a&gt;Add ReactNative project to Linked Framework and Libraries.&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;General settings -&amp;gt; Linked Framework and Library -&amp;gt;
++ -&amp;gt; Add Other... -&amp;gt; chose node&amp;#95;modules/react-native/React/React.xcodeproj&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;&lt;a name=&quot;add&amp;#95;reactnative&amp;#95;library&amp;#95;in&amp;#95;linked&amp;#95;framework&amp;#95;and&amp;#95;libraries&amp;#95;again.&quot;&gt;&lt;/a&gt;Add ReactNative library in Linked Framework and Libraries again.&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;+ -&amp;gt; libReact.a&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;&lt;a name=&quot;repeat&amp;#95;previous&amp;#95;two&amp;#95;steps&quot;&gt;&lt;/a&gt;Repeat previous two steps&lt;/h3&gt;Add and link other libraries from /node_modules/react-native/Libraries as needed.&lt;p&gt;Libraries I have added:&lt;pre&gt;&lt;code&gt;libRCTActionSheet.a
+libRCTGeolocation.a
+libRCTImage.a
+libRCTLinking.a
+libRCTNetwork.a
+libRCTSettings.a
+libRCTText.a
+libRCTVibration.a
+libRCTWebSocket.a &lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;&lt;a name=&quot;update&amp;#95;build&amp;#95;setting&quot;&gt;&lt;/a&gt;Update Build Setting&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;Linking -&amp;gt; Other Linker Flags: Add `-all&amp;#95;load`
+Search Paths -&amp;gt; Header Search Paths -&amp;gt; &amp;quot;node&amp;#95;module/react-native/Libraries&amp;quot; with `recursive`
+Swift Compiler - Code Generation &amp;gt; Objective-C Bridging Header
+    &amp;#42; Set to ProjectName/ProjectName-Bridging-Header.h, change ProjectName to actual name&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;&lt;a name=&quot;create&amp;#95;bridging&amp;#95;file&quot;&gt;&lt;/a&gt;Create bridging file&lt;/h3&gt;Create a new header file &lt;code&gt;ProjectName/ProjectName-Bridging-Header.h&lt;/code&gt;&lt;/p&gt;&lt;h3&gt;&lt;a name=&quot;project&amp;#95;can&amp;#95;be&amp;#95;built&amp;#95;and&amp;#95;run&amp;#95;from&amp;#95;xcode&amp;#95;now&quot;&gt;&lt;/a&gt;Project can be built and run from XCode now&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Try to run the code in simulator.&lt;/li&gt;&lt;li&gt;It should start a terminal window with running &lt;code&gt;packager&lt;/code&gt;.&lt;/li&gt;&lt;li&gt;If everything works fine, it should show &lt;code&gt;React packager ready.&lt;/code&gt; in terminal window.&lt;/li&gt;&lt;/ul&gt;&lt;h3&gt;&lt;a name=&quot;add&amp;#95;reactnative&amp;#95;javascript&amp;#95;code&quot;&gt;&lt;/a&gt;Add ReactNative Javascript code&lt;/h3&gt;&lt;ul&gt;&lt;li&gt;Create file index.ios.js and save to project root directory&lt;/li&gt;&lt;/ul&gt;&lt;pre&gt;&lt;code class=&quot;javascript&quot;&gt;var React = require&amp;#40;'react-native'&amp;#41;;
+var {
+    AppRegistry,
+    Text,
+    View
+} = React;
+
+var App = module.exports = React.createClass&amp;#40;{
+    render&amp;#40;&amp;#41; {
+        return &amp;#40;
+            &amp;lt;View style={{flex: 1, alignItems: 'center', justifyContent: 'center', borderWidth: 2}}&amp;gt;
+                &amp;lt;Text style={{alignSelf: 'center', alignItems: 'stretch', backgroundColor: 'green'}}&amp;gt;Hello World!&amp;lt;/Text&amp;gt;
+            &amp;lt;/View&amp;gt;
+        &amp;#41;
+    }
+}&amp;#41;;
+                                             
+AppRegistry.registerComponent&amp;#40;'ReactNativeSwiftDemo', &amp;#40;&amp;#41; =&amp;gt; App&amp;#41;;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Test packager by accessing below url:&lt;/p&gt;&lt;pre&gt;&lt;code&gt;http://localhost:8081/index.ios.bundle?platform=ios&amp;amp;dev=true&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;&lt;a name=&quot;add&amp;#95;reactnative&amp;#95;view&amp;#95;into&amp;#95;ios&amp;#95;application&quot;&gt;&lt;/a&gt;Add ReactNative View into iOS Application&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Add two class variables into AppDelegate.swift&lt;/li&gt;&lt;/ol&gt;&lt;pre&gt;&lt;code class=&quot;swift&quot;&gt;    var rootView: RCTRootView
+    let jsCodeLocation = NSURL&amp;#40;string: &amp;quot;http://localhost:8081/index.ios.bundle?platform=ios&amp;amp;dev=true&amp;quot;&amp;#41;
+&lt;/code&gt;&lt;/pre&gt;&lt;ol&gt;&lt;li&gt;Add init() function in AppDelegate.swift&lt;pre&gt;&lt;code class=&quot;swift&quot;&gt;    override init&amp;#40;&amp;#41; {
+        // initialize the rootView to fetch JS from the dev server
+        rootView = RCTRootView.init&amp;#40;bundleURL: jsCodeLocation!, moduleName: &amp;quot;ReactNativeSwiftDemo&amp;quot;, initialProperties: nil, launchOptions: nil&amp;#41;
+        super.init&amp;#40;&amp;#41;
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;&lt;li&gt;Update application didFinishLaunchingWithOptions delegate function&lt;/li&gt;&lt;/ol&gt;&lt;pre&gt;&lt;code class=&quot;swift&quot;&gt;    func application&amp;#40;application: UIApplication, didFinishLaunchingWithOptions launchOptions: &amp;#91;NSObject: AnyObject&amp;#93;?&amp;#41; -&amp;gt; Bool {
+        // Override point for customization after application launch.
+        
+        // Initialize a Controller to use view as React View
+        let rootViewController = ViewController&amp;#40;&amp;#41;
+        rootViewController.view = rootView
+        
+        // Set window to use rootViewController
+        self.window = UIWindow&amp;#40;frame: UIScreen.mainScreen&amp;#40;&amp;#41;.bounds&amp;#41;
+        self.window?.rootViewController = rootViewController
+        self.window?.makeKeyAndVisible&amp;#40;&amp;#41;
+
+        return true
+    }
+&lt;/code&gt;&lt;/pre&gt;&lt;h3&gt;&lt;a name=&quot;enable&amp;#95;access&amp;#95;to&amp;#95;http://localhost&quot;&gt;&lt;/a&gt;Enable access to http://localhost&lt;/h3&gt;&lt;ol&gt;&lt;li&gt;Open Info.plist&lt;/li&gt;&lt;li&gt;Add key &quot;NSAppTransportSecurity&quot; with &quot;Dictionary&quot; type&lt;/li&gt;&lt;li&gt;Add key &quot;NSAllowsArbitraryLoads&quot; with value &quot;true&quot; in &quot;NSAppTransportSecurity&quot;&lt;/li&gt;&lt;/ol&gt;&lt;h3&gt;&lt;a name=&quot;now&amp;#95;you&amp;#95;can&amp;#95;try&amp;#95;to&amp;#95;build&amp;#95;and&amp;#95;run&quot;&gt;&lt;/a&gt;Now you can try to build and run&lt;/h3&gt;
+</description>
+<enclosure>
+
+</enclosure>
+<pubDate>
+Sun, 17 Jan 2016 00:00:00 -0800
+</pubDate>
+</item>
 </channel>
 </rss>
