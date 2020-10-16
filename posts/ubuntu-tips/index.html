@@ -1,0 +1,548 @@
+<html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <title>Ubuntu Tips - Random Stuff</title>
+    <meta name="keywords" content="linux ubuntu tips">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css" href="/css/output.css">
+    <link rel="stylesheet"  type="text/css" href="/css/customize.css">
+  </head>
+
+  <body class="text-base p-2">
+    <div class="container mx-auto text-base p-2">      <nav id="main-menu" class="main-menu font-hairline py-2" aria-label="Main Menu">
+        <ul class="list-reset">
+          
+          
+            <li class="inline  active ">
+              <a class="link text-2xl dim" href="/" title="Home">Home</a>
+            </li>
+          
+            <li class="inline ">
+              <a class="link text-2xl dim" href="/cn" title="中文">中文</a>
+            </li>
+          
+        </ul>
+      </nav>
+
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Ubuntu Tips</h1>
+      
+    </div>
+    
+<div class='entry-meta'>
+  <span class='posted-on'><svg class="inline-box h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+</svg>
+<span class='screen-reader-text'> </span>
+  <time class='entry-date' datetime='2016-09-05T00:00:00-07:00'>2016, Sep 05</time>
+</span>
+  
+
+    <ul id="tags" class="list-reset pl-0 py-1 inline">
+  
+  
+  </ul>
+
+
+</div>
+
+
+  </div>
+
+
+<div class='f6 container entry-content'>
+  <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><!-- raw HTML omitted -->1<!-- raw HTML omitted --> <a href="#show-all-network-interfaces">Show all network interfaces</a></li>
+<li><!-- raw HTML omitted -->2<!-- raw HTML omitted --> <a href="#remove-ppa-and-trusted-key">Remove ppa and trusted key</a></li>
+<li><!-- raw HTML omitted -->3<!-- raw HTML omitted --> <a href="#upgrade-kernel">Upgrade kernel</a></li>
+<li><!-- raw HTML omitted -->4<!-- raw HTML omitted --> <a href="#apt-install-oracle-jdk-with-404-error">apt Install oracle jdk with 404 error</a></li>
+<li><!-- raw HTML omitted -->5<!-- raw HTML omitted --> <a href="#manual-install-cryfs--ubuntu">Manual install CryFS (Ubuntu)</a></li>
+<li><!-- raw HTML omitted -->6<!-- raw HTML omitted --> <a href="#vsftpd">vsftpd</a></li>
+<li><!-- raw HTML omitted -->7<!-- raw HTML omitted --> <a href="#dell-aurora-ethernet-network">Dell Aurora Ethernet network</a></li>
+<li><!-- raw HTML omitted -->8<!-- raw HTML omitted --> <a href="#install-nvidia-driver">Install Nvidia driver</a></li>
+<li><!-- raw HTML omitted -->9<!-- raw HTML omitted --> <a href="#install-kvm">Install KVM</a></li>
+<li><!-- raw HTML omitted -->10<!-- raw HTML omitted --> <a href="#enable-upnp-for-dlna">Enable upnp for dlna</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="show-all-network-interfaces"><!-- raw HTML omitted -->1<!-- raw HTML omitted --> Show all network interfaces</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">
+$ ifconfig -a
+
+$ lshw -C network
+
+$ ip a s
+
+<span style="color:#080;font-style:italic"># ip link set dev eno1 up   # enable network device eno1</span>
+
+<span style="color:#080;font-style:italic"># ip link set dev eno1 down # disable network device eno1</span>
+</code></pre></div><h2 id="remove-ppa-and-trusted-key"><!-- raw HTML omitted -->2<!-- raw HTML omitted --> Remove ppa and trusted key</h2>
+<ol>
+<li>
+<p>remove file from /etc/apt/sources.list.d or use &lsquo;ppa-purge&rsquo;</p>
+</li>
+<li>
+<p>clean up trusted keys</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">;; list the trusted keys
+$ sudo apt-key list
+
+;; remove the key
+$ sudo apt-key del KEY_ID
+</code></pre></div></li>
+</ol>
+<h2 id="upgrade-kernel"><!-- raw HTML omitted -->3<!-- raw HTML omitted --> Upgrade kernel</h2>
+<p><a href="https://askubuntu.com/a/926337">https://askubuntu.com/a/926337</a></p>
+<ol>
+<li>
+<p>find existing kernel</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ uname -r
+</code></pre></div></li>
+<li>
+<p>find new kernel</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ apt-cache search linux-image
+</code></pre></div></li>
+<li>
+<p>Install new kernel</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo apt-get install linux-image-4.13.0-21-generic linux-image-extra-4.13.0-21-generic linux-headers-4.13.0-21-generic
+</code></pre></div></li>
+<li>
+<p>Reboot using new kernel, confirm new kernel is installed</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ uname -r
+</code></pre></div></li>
+<li>
+<p>Remove old kernel if everything works well.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo apt-get autoremove
+</code></pre></div></li>
+</ol>
+<h2 id="apt-install-oracle-jdk-with-404-error"><!-- raw HTML omitted -->4<!-- raw HTML omitted --> apt Install oracle jdk with 404 error</h2>
+<p>Since Oracle has moved the download link and requires login credentials to download older versions of java, follow the following steps to install java 7:</p>
+<ol>
+<li>
+<p>Download latest java version from <a href="http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html">http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase7-521261.html</a>. You will need to login.</p>
+</li>
+<li>
+<p>Delete jdk-7uXX-linux-x64.tar.gz from <em>var/cache/oracle-jdk7-installer</em> where XX is the version number.</p>
+</li>
+<li>
+<p>Move the downloaded version into <em>var/cache/oracle-jdk7-installer</em> using the following command</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo mv jdk-7u<span style="color:#666">(</span>downloadedversion<span style="color:#666">)</span>-linux-x64.tar.gz /var/cache/oracle-jdk7-installer/
+</code></pre></div></li>
+<li>
+<p>Now run the following command</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo apt-get install oracle-java7-installer
+</code></pre></div></li>
+</ol>
+<h2 id="manual-install-cryfs--ubuntu"><!-- raw HTML omitted -->5<!-- raw HTML omitted --> Manual install CryFS (Ubuntu)</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># Add apt key</span>
+wget -O - https://www.cryfs.org/apt.key | sudo apt-key add -
+
+<span style="color:#080;font-style:italic"># Add apt repository</span>
+sudo sh -c <span style="color:#b44">&#34;echo \&#34;deb http://apt.cryfs.org/ubuntu `lsb_release -s -c` main\&#34; &gt; /etc/apt/sources.list.d/cryfs.list&#34;</span>
+
+<span style="color:#080;font-style:italic"># Install cryfs</span>
+sudo apt-get update
+sudo apt-get install cryfs
+</code></pre></div><h2 id="vsftpd"><!-- raw HTML omitted -->6<!-- raw HTML omitted --> vsftpd</h2>
+<ol>
+<li>
+<p>install vsftpd</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo apt update
+$ sudo apt install vsftpd
+</code></pre></div><p>backup configuration</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo cp /etc/vsftpd.conf /etc/vsftpd.conf.orig
+</code></pre></div></li>
+<li>
+<p>Opening the Firewall</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo ufw status
+
+<span style="color:#080;font-style:italic"># open ports 20 and 21 for FTP, port 990 for later when we enable</span>
+<span style="color:#080;font-style:italic"># TLS, and ports 40000-50000 for the range of passive ports we plan</span>
+<span style="color:#080;font-style:italic"># to set in the configuration file:</span>
+$ sudo ufw allow 20/tcp
+$ sudo ufw allow 21/tcp
+$ sudo ufw allow 990/tcp
+$ sudo ufw allow 40000:50000/tcp
+$ sudo ufw status
+</code></pre></div></li>
+<li>
+<p>Preparing the User Directory</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo adduser ftpuser --home /tank/sharing/ftpuser --shell /bin/false
+</code></pre></div></li>
+<li>
+<p>Add /bin/false to /etc/shells for allowing user login through ftp</p>
+</li>
+<li>
+<p>Change /etc/vsftpd.conf</p>
+<blockquote>
+<p>anonymous_enable=NO</p>
+<p>local_enable=YES</p>
+<p>write_enable=YES</p>
+<p>chroot_local_user=YES</p>
+<p>local_umask=012</p>
+<p>pasv_min_port=40000
+pasv_max_port=50000</p>
+<p>userlist_enable=YES
+userlist_file=/etc/vsftpd.userlist
+userlist_deny=NO</p>
+</blockquote>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ <span style="color:#a2f">echo</span> <span style="color:#b44">&#34;sammy&#34;</span> | sudo tee -a /etc/vsftpd.userlist
+$ sudo systemctl restart vsftpd
+$ add user to group
+
+$ usermod -a -G ftpuser ubuntu
+</code></pre></div></li>
+</ol>
+<h2 id="dell-aurora-ethernet-network"><!-- raw HTML omitted -->7<!-- raw HTML omitted --> Dell Aurora Ethernet network</h2>
+<ol>
+<li>
+<p>Enable network card</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ lspci -knn | grep -i eth
+$ modprobe alx
+$ <span style="color:#a2f">echo</span> <span style="color:#b44">&#39;1969 e0b1&#39;</span> | sudo tee /sys/bus/pci/drivers/alx/new_id
+$ dmesg | grep -i eth0
+</code></pre></div></li>
+<li>
+<p>Setup network</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># DHCP</span>
+$ sudo ip link <span style="color:#a2f">set</span> dev eth0 down
+$ sudo dhclient eth0
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic"># Static ip</span>
+$ sudo ip addr add 192.168.1.14/24 dev eth0
+$ sudo ip link <span style="color:#a2f">set</span> dev eth0 up
+$ sudo ip route add default via 192.168.1.1
+</code></pre></div></li>
+<li>
+<p>If everything works, we need update configuration for future</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo vi /etc/network/interfaces
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic">## To configure a dynamic IP address</span>
+auto eth0
+iface eth0 inet dhcp
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#080;font-style:italic">## Or configure a static IP</span>
+auto eth0
+iface eth0 inet static
+  address 192.168.1.14
+  gateway 192.168.1.1
+  netmask 255.255.255.0
+  network 192.168.1.0
+  broadcast 192.168.1.255
+</code></pre></div></li>
+<li>
+<p>For these settings to take effect you need to restart your networking services.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo /etc/init.d/networking restart
+</code></pre></div></li>
+</ol>
+<h2 id="install-nvidia-driver"><!-- raw HTML omitted -->8<!-- raw HTML omitted --> Install Nvidia driver</h2>
+<ol>
+<li>
+<p>blacklist other driver, by editing file /etc/modprobe.d/nvidia-installer-disable-nouveau.conf</p>
+<blockquote>
+<p>blacklist amd76x_edac</p>
+<p>blacklist vga16fb
+blacklist nouveau
+blacklist rivafb
+blacklist nvidiafb
+blacklist rivatv</p>
+</blockquote>
+</li>
+<li>
+<p>Remove all old nvidia* packages</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo apt-get remove --purge nvidia-*
+</code></pre></div></li>
+<li>
+<p>Optional: Note: If you still get the error related to nouveau drivers then you are probably required to update the initramfs, which might be configured to load the nouveau drivers. Don&rsquo;t reboot or poweroff, run this command to update the initramfs disk.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo update-initramfs -u
+</code></pre></div></li>
+<li>
+<p>Install dependencies</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">sudo apt install build-essential gcc-multilib dkms linux-headers-<span style="color:#a2f;font-weight:bold">$(</span>uname -r<span style="color:#a2f;font-weight:bold">)</span>
+</code></pre></div></li>
+</ol>
+<h2 id="install-kvm"><!-- raw HTML omitted -->9<!-- raw HTML omitted --> Install KVM</h2>
+<p>$ sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils</p>
+<p>or</p>
+<p>$ sudo apt-get install qemu-kvm virtinst bridge-utils cpu-checker libvirt-clients</p>
+<p>$ sudo usermod -a -G libvirt $(whoami) # add current user to libvirt group, so no need to sudo</p>
+<h2 id="enable-upnp-for-dlna"><!-- raw HTML omitted -->10<!-- raw HTML omitted --> Enable upnp for dlna</h2>
+<p>$ ufw allow 1900:1901/udp</p>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+<br class="border-solid" /><ul class="list py-2 pl-0 bt w-85 w-80-ns w-55-l">
+  <li class="inline-block pt2">
+    <a href="https://github.com/tendant" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Open Github account in new tab</span>
+      <svg class="inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+  
+  <li class="inline-block">
+    <a href="mailto:tendant@gmail.com" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Contact via Email</span>
+      <svg class="icon inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  </ul><div class="f5 gray">
+  <p> &copy; 2015-2020 tendant </p>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-6332912-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+    </div>
+  </body>
+</html>

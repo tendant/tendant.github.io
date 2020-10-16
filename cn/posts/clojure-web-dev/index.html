@@ -1,0 +1,268 @@
+<html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <title>Clojure Web 开发从零开始 之一 第一个Clojure 应用程序 - 杂文</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css" href="/css/output.css">
+    <link rel="stylesheet"  type="text/css" href="/css/customize.css">
+  </head>
+
+  <body class="text-base p-2">
+    <div class="container mx-auto text-base p-2">      <nav id="main-menu" class="main-menu font-hairline py-2" aria-label="Main Menu">
+        <ul class="list-reset">
+          
+          
+            <li class="inline ">
+              <a class="link text-2xl dim" href="/" title="Home">Home</a>
+            </li>
+          
+            <li class="inline  active ">
+              <a class="link text-2xl dim" href="/cn" title="中文">中文</a>
+            </li>
+          
+        </ul>
+      </nav>
+
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Clojure Web 开发从零开始 之一 第一个Clojure 应用程序</h1>
+      
+    </div>
+    
+<div class='entry-meta'>
+  <span class='posted-on'><svg class="inline-box h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+</svg>
+<span class='screen-reader-text'> </span>
+  <time class='entry-date' datetime='2019-12-09T15:29:00-08:00'>2019, Dec 09</time>
+</span>
+  
+
+    <ul id="tags" class="list-reset pl-0 py-1 inline">
+  
+  
+  </ul>
+
+
+</div>
+
+
+  </div>
+
+
+<div class='f6 container entry-content'>
+  <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><!-- raw HTML omitted -->1<!-- raw HTML omitted --> <a href="#%E9%A1%B9%E7%9B%AE%E5%87%86%E5%A4%87">项目准备</a></li>
+<li><!-- raw HTML omitted -->2<!-- raw HTML omitted --> <a href="#%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%96%B0%E6%96%87%E4%BB%B6%E5%A4%B9%E5%B9%B6%E5%91%BD%E5%90%8D--clj-httpbin--%E7%84%B6%E5%90%8E%E5%88%9D%E5%A7%8B%E5%8C%96git-repo">新建一个新文件夹并命名(clj-httpbin)，然后初始化git repo</a></li>
+<li><!-- raw HTML omitted -->3<!-- raw HTML omitted --> <a href="#%E5%88%9B%E5%BB%BA%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6-project-dot-clj">创建项目文件 project.clj</a></li>
+<li><!-- raw HTML omitted -->4<!-- raw HTML omitted --> <a href="#%E5%BB%BA%E7%AB%8B%E7%AC%AC%E4%B8%80%E4%B8%AAclojure-%E6%BA%90%E4%BB%A3%E7%A0%81%E6%96%87%E4%BB%B6--src-clj-httpbin-core-dot-clj--dot">建立第一个Clojure 源代码文件 (src/clj_httpbin/core.clj).</a></li>
+<li><!-- raw HTML omitted -->5<!-- raw HTML omitted --> <a href="#%E6%B7%BB%E5%8A%A0%E7%A8%8B%E5%BA%8F%E5%85%A5%E5%8F%A3">添加程序入口</a></li>
+<li><!-- raw HTML omitted -->6<!-- raw HTML omitted --> <a href="#%E7%94%9F%E6%88%90%E5%8F%AF%E6%89%A7%E8%A1%8Cjar-%E6%96%87%E4%BB%B6">生成可执行Jar 文件</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="项目准备"><!-- raw HTML omitted -->1<!-- raw HTML omitted --> 项目准备</h2>
+<ol>
+<li>安装Java SDK</li>
+<li>下载lein (<a href="https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein">https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein</a>)，并放到PATH 里面(e.g. ~/bin)</li>
+<li>设置lein 为可执行文件 (chmod a+x ~/bin/lein)</li>
+<li>测试下面两个命令都可以正常执行</li>
+</ol>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ java -version
+$ lein
+</code></pre></div><h2 id="新建一个新文件夹并命名--clj-httpbin--然后初始化git-repo"><!-- raw HTML omitted -->2<!-- raw HTML omitted --> 新建一个新文件夹并命名(clj-httpbin)，然后初始化git repo</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ mkdir clj-httpbin
+$ <span style="color:#a2f">cd</span> clj-httpbin
+$ git init
+</code></pre></div><h2 id="创建项目文件-project-dot-clj"><!-- raw HTML omitted -->3<!-- raw HTML omitted --> 创建项目文件 project.clj</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a2f;font-weight:bold">defproject </span><span style="color:#b8860b">clj-httpbin</span> <span style="color:#b44">&#34;0.1.0&#34;</span>
+  <span style="color:#b8860b">:description</span> <span style="color:#b44">&#34;Clojure httpbin clone&#34;</span>
+  <span style="color:#b8860b">:url</span> <span style="color:#b44">&#34;http://example.com/FIXME&#34;</span>
+  <span style="color:#b8860b">:license</span> {<span style="color:#b8860b">:name</span> <span style="color:#b44">&#34;Eclipse Public License&#34;</span>
+            <span style="color:#b8860b">:url</span> <span style="color:#b44">&#34;http://www.eclipse.org/legal/epl-v10.html&#34;</span>}
+  <span style="color:#b8860b">:dependencies</span> [[<span style="color:#b8860b">org.clojure/clojure</span> <span style="color:#b44">&#34;1.10.1&#34;</span>]])
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ lein repl  ; 测试Clojure repl 可以正常运行
+</code></pre></div><h2 id="建立第一个clojure-源代码文件--src-clj-httpbin-core-dot-clj--dot"><!-- raw HTML omitted -->4<!-- raw HTML omitted --> 建立第一个Clojure 源代码文件 (src/clj_httpbin/core.clj).</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a2f;font-weight:bold">ns </span><span style="color:#b8860b">clj-httpbin.core</span>)
+
+(<span style="color:#a2f;font-weight:bold">defn </span><span style="color:#b8860b">-main</span> []
+  (<span style="color:#a2f">println </span><span style="color:#b44">&#34;Hello, World!&#34;</span>))
+</code></pre></div><h2 id="添加程序入口"><!-- raw HTML omitted -->5<!-- raw HTML omitted --> 添加程序入口</h2>
+<p>在project.clj 文件:dependencies 之前添加下面的代码</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure"><span style="color:#b8860b">:main</span> <span style="color:#b8860b">clj-httpbin.core</span>
+</code></pre></div><p>执行下面的命令，测试程序可以正常执行</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ lein run
+</code></pre></div><h2 id="生成可执行jar-文件"><!-- raw HTML omitted -->6<!-- raw HTML omitted --> 生成可执行Jar 文件</h2>
+<p>将 src/clj_httpbin/core.clj 文件第一行由</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a2f;font-weight:bold">ns </span><span style="color:#b8860b">clj-httpbin.core</span>)
+</code></pre></div><p>改成：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a2f;font-weight:bold">ns </span><span style="color:#b8860b">clj-httpbin.core</span>
+  (<span style="color:#b8860b">:gen-class</span>))
+</code></pre></div><p>然后执行下面的命令:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ lein uberjar
+</code></pre></div><p>这时在target 目录下，会有两个Jar 文件生成：clj-httpbin-0.1.0.jar 和 clj-httpbin-0.1.0-standalone.jar</p>
+<p>用Java 来运行Jar 文件：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ java -jar target/clj-httpbin-0.1.0-standalone.jar
+</code></pre></div><p>这时应该出现正确的程序运行结果.</p>
+<pre><code class="language-nil" data-lang="nil">Hello, World!
+</code></pre><p>到此，我们已经完成了最基本的Clojure 程序结构。从下一篇文章开始我们会一点一点的给这个程序添加新的功能。</p>
+<ul>
+<li><a href="../clojure-web-dev-2">Clojure Web 开发从零开始 之二</a></li>
+</ul>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+<br class="border-solid" /><ul class="list py-2 pl-0 bt w-85 w-80-ns w-55-l">
+  <li class="inline-block pt2">
+    <a href="https://github.com/tendant" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Open Github account in new tab</span>
+      <svg class="inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+  
+  <li class="inline-block">
+    <a href="mailto:tendant@gmail.com" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Contact via Email</span>
+      <svg class="icon inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  </ul><div class="f5 gray">
+  <p> &copy; 2015-2020 tendant </p>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-6332912-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+    </div>
+  </body>
+</html>

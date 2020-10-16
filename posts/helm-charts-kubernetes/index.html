@@ -1,0 +1,408 @@
+<html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <title>Helm - Random Stuff</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css" href="/css/output.css">
+    <link rel="stylesheet"  type="text/css" href="/css/customize.css">
+  </head>
+
+  <body class="text-base p-2">
+    <div class="container mx-auto text-base p-2">      <nav id="main-menu" class="main-menu font-hairline py-2" aria-label="Main Menu">
+        <ul class="list-reset">
+          
+          
+            <li class="inline  active ">
+              <a class="link text-2xl dim" href="/" title="Home">Home</a>
+            </li>
+          
+            <li class="inline ">
+              <a class="link text-2xl dim" href="/cn" title="中文">中文</a>
+            </li>
+          
+        </ul>
+      </nav>
+
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Helm</h1>
+      
+    </div>
+    
+<div class='entry-meta'>
+  <span class='posted-on'><svg class="inline-box h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+</svg>
+<span class='screen-reader-text'> </span>
+  <time class='entry-date' datetime='2019-01-28T00:00:00-08:00'>2019, Jan 28</time>
+</span>
+  
+
+    <ul id="tags" class="list-reset pl-0 py-1 inline">
+  
+  
+  </ul>
+
+
+</div>
+
+
+  </div>
+
+
+<div class='f6 container entry-content'>
+  <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><!-- raw HTML omitted -->1<!-- raw HTML omitted --> <a href="#three-big-concepts">THREE BIG CONCEPTS:</a></li>
+<li><!-- raw HTML omitted -->2<!-- raw HTML omitted --> <a href="#commands">Commands</a>
+<ul>
+<li><!-- raw HTML omitted -->2.1<!-- raw HTML omitted --> <a href="#helm-init-install-tiller-into-kubernetes-cluster">&lsquo;helm init&rsquo;: Install Tiller into Kubernetes cluster</a></li>
+<li><!-- raw HTML omitted -->2.2<!-- raw HTML omitted --> <a href="#helm-search-finding-charts">‘helm search’: FINDING CHARTS</a></li>
+<li><!-- raw HTML omitted -->2.3<!-- raw HTML omitted --> <a href="#helm-install-installing-a-package">‘helm install’: INSTALLING A PACKAGE</a></li>
+<li><!-- raw HTML omitted -->2.4<!-- raw HTML omitted --> <a href="#customizing-the-chart-before-installing">Customizing the Chart Before Installing</a></li>
+<li><!-- raw HTML omitted -->2.5<!-- raw HTML omitted --> <a href="#more-installation-methods">More Installation Methods</a></li>
+<li><!-- raw HTML omitted -->2.6<!-- raw HTML omitted --> <a href="#helm-upgrade-and-helm-rollback-upgrading-a-release-and-recovering-on-failure">‘helm upgrade’ AND ‘helm rollback’: UPGRADING A RELEASE, AND RECOVERING ON FAILURE</a></li>
+<li><!-- raw HTML omitted -->2.7<!-- raw HTML omitted --> <a href="#helm-delete-deleting-a-release">‘helm delete’: DELETING A RELEASE</a></li>
+<li><!-- raw HTML omitted -->2.8<!-- raw HTML omitted --> <a href="#helm-repo-working-with-repositories">‘helm repo’: WORKING WITH REPOSITORIES</a></li>
+</ul>
+</li>
+<li><!-- raw HTML omitted -->3<!-- raw HTML omitted --> <a href="#creating-your-own-charts">CREATING YOUR OWN CHARTS</a></li>
+<li><!-- raw HTML omitted -->4<!-- raw HTML omitted --> <a href="#tiller-namespaces-and-rbac">TILLER, NAMESPACES AND RBAC</a></li>
+<li><!-- raw HTML omitted -->5<!-- raw HTML omitted --> <a href="#configmap-and-security">configmap &amp; security</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<p><a href="https://docs.helm.sh/using%5Fhelm/#using-helm">https://docs.helm.sh/using%5Fhelm/#using-helm</a>
+<a href="https://docs.helm.sh/chart%5Ftemplate%5Fguide/">https://docs.helm.sh/chart%5Ftemplate%5Fguide/</a></p>
+<h2 id="three-big-concepts"><!-- raw HTML omitted -->1<!-- raw HTML omitted --> THREE BIG CONCEPTS:</h2>
+<p>A Chart is a Helm package. It contains all of the resource definitions necessary to run an application, tool, or service inside of a Kubernetes cluster. Think of it like the Kubernetes equivalent of a Homebrew formula, an Apt dpkg, or a Yum RPM file.</p>
+<p>A Repository is the place where charts can be collected and shared. It’s like Perl’s CPAN archive or the Fedora Package Database, but for Kubernetes packages.</p>
+<p>A Release is an instance of a chart running in a Kubernetes cluster. One chart can often be installed many times into the same cluster. And each time it is installed, a new release is created. Consider a MySQL chart. If you want two databases running in your cluster, you can install that chart twice. Each one will have its own release, which will in turn have its own release name.</p>
+<p>With these concepts in mind, we can now explain Helm like this:</p>
+<p>Helm installs charts into Kubernetes, creating a new release for each installation. And to find new charts, you can search Helm chart repositories.</p>
+<h2 id="commands"><!-- raw HTML omitted -->2<!-- raw HTML omitted --> Commands</h2>
+<h3 id="helm-init-install-tiller-into-kubernetes-cluster"><!-- raw HTML omitted -->2.1<!-- raw HTML omitted --> &lsquo;helm init&rsquo;: Install Tiller into Kubernetes cluster</h3>
+<h3 id="helm-search-finding-charts"><!-- raw HTML omitted -->2.2<!-- raw HTML omitted --> ‘helm search’: FINDING CHARTS</h3>
+<h3 id="helm-install-installing-a-package"><!-- raw HTML omitted -->2.3<!-- raw HTML omitted --> ‘helm install’: INSTALLING A PACKAGE</h3>
+<p>(If you want to use your own release name, simply use the &ndash;name flag on helm install.)</p>
+<h3 id="customizing-the-chart-before-installing"><!-- raw HTML omitted -->2.4<!-- raw HTML omitted --> Customizing the Chart Before Installing</h3>
+<p>Installing the way we have here will only use the default configuration options for this chart. Many times, you will want to customize the chart to use your preferred configuration.</p>
+<p>To see what options are configurable on a chart, use &lsquo;&lsquo;&lsquo;helm inspect values&rsquo;'':</p>
+<h3 id="more-installation-methods"><!-- raw HTML omitted -->2.5<!-- raw HTML omitted --> More Installation Methods</h3>
+<p>The helm install command can install from several sources:</p>
+<p>A chart repository (as we’ve seen above)
+A local chart archive (helm install foo-0.1.1.tgz)
+An unpacked chart directory (helm install path/to/foo)
+A full URL (helm install <a href="https://example.com/charts/foo-1.2.3.tgz">https://example.com/charts/foo-1.2.3.tgz</a>)</p>
+<h3 id="helm-upgrade-and-helm-rollback-upgrading-a-release-and-recovering-on-failure"><!-- raw HTML omitted -->2.6<!-- raw HTML omitted --> ‘helm upgrade’ AND ‘helm rollback’: UPGRADING A RELEASE, AND RECOVERING ON FAILURE</h3>
+<h3 id="helm-delete-deleting-a-release"><!-- raw HTML omitted -->2.7<!-- raw HTML omitted --> ‘helm delete’: DELETING A RELEASE</h3>
+<h3 id="helm-repo-working-with-repositories"><!-- raw HTML omitted -->2.8<!-- raw HTML omitted --> ‘helm repo’: WORKING WITH REPOSITORIES</h3>
+<h2 id="creating-your-own-charts"><!-- raw HTML omitted -->3<!-- raw HTML omitted --> CREATING YOUR OWN CHARTS</h2>
+<p>$ helm create deis-workflow
+$ helm package deis-workflow
+$ helm install ./deis-workflow-0.1.0.tgz</p>
+<h2 id="tiller-namespaces-and-rbac"><!-- raw HTML omitted -->4<!-- raw HTML omitted --> TILLER, NAMESPACES AND RBAC</h2>
+<p>In some cases you may wish to scope Tiller or deploy multiple Tillers to a single cluster. Here are some best practices when operating in those circumstances.</p>
+<ol>
+<li>
+<p>Tiller can be installed into any namespace. By default, it is installed into kube-system. You can run multiple Tillers provided they each run in their own namespace.</p>
+</li>
+<li>
+<p>Limiting Tiller to only be able to install into specific namespaces and/or resource types is controlled by Kubernetes RBAC roles and rolebindings. You can add a service account to Tiller when configuring Helm via helm init &ndash;service-account <!-- raw HTML omitted -->. You can find more information about that here.</p>
+</li>
+<li>
+<p>Release names are unique PER TILLER INSTANCE.</p>
+</li>
+<li>
+<p>Charts should only contain resources that exist in a single namespace.</p>
+</li>
+<li>
+<p>It is not recommended to have multiple Tillers configured to manage resources in the same namespace.</p>
+</li>
+</ol>
+<h2 id="configmap-and-security"><!-- raw HTML omitted -->5<!-- raw HTML omitted --> configmap &amp; security</h2>
+<p>ConfigMap for non-sensitive data</p>
+<p>In the Deployment manifest, each entry within data appears within the container as an environment variable with the same name and the associated value, via envFrom. As all environment variables in the Deployment manifest must be strings, we have to quote any ambiguous values that could be inferred as another value type.</p>
+<p>PORT: &ldquo;4000&rdquo;</p>
+<p>CONDTIONAL_VARS: &ldquo;true&rdquo;</p>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+<br class="border-solid" /><ul class="list py-2 pl-0 bt w-85 w-80-ns w-55-l">
+  <li class="inline-block pt2">
+    <a href="https://github.com/tendant" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Open Github account in new tab</span>
+      <svg class="inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+  
+  <li class="inline-block">
+    <a href="mailto:tendant@gmail.com" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Contact via Email</span>
+      <svg class="icon inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  </ul><div class="f5 gray">
+  <p> &copy; 2015-2020 tendant </p>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-6332912-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+    </div>
+  </body>
+</html>

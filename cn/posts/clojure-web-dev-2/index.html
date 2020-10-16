@@ -1,0 +1,271 @@
+<html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <title>Clojure Web 开发从零开始 之二 简单web 应用 - 杂文</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css" href="/css/output.css">
+    <link rel="stylesheet"  type="text/css" href="/css/customize.css">
+  </head>
+
+  <body class="text-base p-2">
+    <div class="container mx-auto text-base p-2">      <nav id="main-menu" class="main-menu font-hairline py-2" aria-label="Main Menu">
+        <ul class="list-reset">
+          
+          
+            <li class="inline ">
+              <a class="link text-2xl dim" href="/" title="Home">Home</a>
+            </li>
+          
+            <li class="inline  active ">
+              <a class="link text-2xl dim" href="/cn" title="中文">中文</a>
+            </li>
+          
+        </ul>
+      </nav>
+
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Clojure Web 开发从零开始 之二 简单web 应用</h1>
+      
+    </div>
+    
+<div class='entry-meta'>
+  <span class='posted-on'><svg class="inline-box h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+</svg>
+<span class='screen-reader-text'> </span>
+  <time class='entry-date' datetime='2019-07-24T00:00:00-07:00'>2019, Jul 24</time>
+</span>
+  
+
+    <ul id="tags" class="list-reset pl-0 py-1 inline">
+  
+  
+  </ul>
+
+
+</div>
+
+
+  </div>
+
+
+<div class='f6 container entry-content'>
+  <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><!-- raw HTML omitted -->1<!-- raw HTML omitted --> <a href="#%E6%B7%BB%E5%8A%A0clojure-%E5%BA%93-http-kit">添加Clojure 库 http-kit</a></li>
+<li><!-- raw HTML omitted -->2<!-- raw HTML omitted --> <a href="#%E4%B8%8B%E8%BD%BDhttp-kit-%E5%BA%93">下载http-kit 库</a></li>
+<li><!-- raw HTML omitted -->3<!-- raw HTML omitted --> <a href="#%E6%9C%80%E7%AE%80%E5%8D%95%E7%9A%84web-app">最简单的web app</a></li>
+<li><!-- raw HTML omitted -->4<!-- raw HTML omitted --> <a href="#%E8%BF%90%E8%A1%8C%E7%A8%8B%E5%BA%8F">运行程序</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<p>上一篇文章里，我们已经建立了一个基本Clojure 程序，并且编译成了可执行的Jar 包，没看的，可以点这里<a href="../clojure-web-dev">Clojure Web 开发从零开始 之一</a>.</p>
+<p>在这篇文章中，我们要把这个Clojure 应用程序变成一个HTTP 服务器。</p>
+<h2 id="添加clojure-库-http-kit"><!-- raw HTML omitted -->1<!-- raw HTML omitted --> 添加Clojure 库 http-kit</h2>
+<p>在project.clj 文件dependencies 里面加上:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">[<span style="color:#b8860b">http-kit</span> <span style="color:#b44">&#34;2.3.0&#34;</span>]
+</code></pre></div><p>project.clj 文件会变成下面这样:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a2f;font-weight:bold">defproject </span><span style="color:#b8860b">clj-httpbin</span> <span style="color:#b44">&#34;0.1.0&#34;</span>
+  <span style="color:#b8860b">:description</span> <span style="color:#b44">&#34;Clojure httpbin clone&#34;</span>
+  <span style="color:#b8860b">:url</span> <span style="color:#b44">&#34;http://example.com/FIXME&#34;</span>
+  <span style="color:#b8860b">:license</span> {<span style="color:#b8860b">:name</span> <span style="color:#b44">&#34;Eclipse Public License&#34;</span>
+            <span style="color:#b8860b">:url</span> <span style="color:#b44">&#34;http://www.eclipse.org/legal/epl-v10.html&#34;</span>}
+  <span style="color:#b8860b">:main</span> <span style="color:#b8860b">clj-httpbin.core</span>
+  <span style="color:#b8860b">:dependencies</span> [[<span style="color:#b8860b">org.clojure/clojure</span> <span style="color:#b44">&#34;1.10.1&#34;</span>]
+                 [<span style="color:#b8860b">http-kit</span> <span style="color:#b44">&#34;2.3.0&#34;</span>]])
+</code></pre></div><h2 id="下载http-kit-库"><!-- raw HTML omitted -->2<!-- raw HTML omitted --> 下载http-kit 库</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ lein deps  ; 自动下载所有库
+</code></pre></div><p>下载的库文件在~/.m2/repository 目录可以找到。你看的没错，这也是Maven local repository 的目录。</p>
+<p>如果你想知道这个程序依赖的所有库可以用下面的命令:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ lein deps :tree
+</code></pre></div><h2 id="最简单的web-app"><!-- raw HTML omitted -->3<!-- raw HTML omitted --> 最简单的web app</h2>
+<p>首先定义一个函数app，这个函数接受一个变量req，req 包含客户端发过来的HTTP 请求的内容。app 函数的返回值会作为HTTP 回复的内容。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a2f;font-weight:bold">defn </span><span style="color:#b8860b">app</span> [<span style="color:#b8860b">req</span>]  <span style="color:#080;font-style:italic">; 定义一个函数名叫app，这个函数接受一个变量req，然后返回一个map。</span>
+  {<span style="color:#b8860b">:status</span> <span style="color:#666">200</span>  <span style="color:#080;font-style:italic">; HTTP Response status code</span>
+   <span style="color:#b8860b">:headers</span> {<span style="color:#b44">&#34;Content-Type&#34;</span> <span style="color:#b44">&#34;text/html&#34;</span>}  <span style="color:#080;font-style:italic">; HTTP Response Header Content-Type</span>
+   <span style="color:#b8860b">:body</span> <span style="color:#b44">&#34;Hello HTTP!&#34;</span>})  <span style="color:#080;font-style:italic">; HTTP Response Body</span>
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#00a000">http/run-server</span> <span style="color:#b8860b">app</span> {<span style="color:#b8860b">:port</span> <span style="color:#666">8080</span>}) <span style="color:#080;font-style:italic">; 启动HTTP Server，端口8080，</span>
+                                   <span style="color:#080;font-style:italic">; httpkit 将接收到HTTP 请求会作为参</span>
+                                   <span style="color:#080;font-style:italic">; 数传给函数app，函数app 的返回值会</span>
+                                   <span style="color:#080;font-style:italic">; 作为HTTP Response 返回给客户端。</span>
+</code></pre></div><p>完整的core.clj 文件：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-clojure" data-lang="clojure">(<span style="color:#a2f;font-weight:bold">ns </span><span style="color:#b8860b">clj-httpbin.core</span>
+  (<span style="color:#b8860b">:require</span> [<span style="color:#b8860b">org.httpkit.server</span> <span style="color:#b8860b">:as</span> <span style="color:#b8860b">http</span>])  <span style="color:#080;font-style:italic">; 使用别名http 来导入 library org.httpkit.server</span>
+  (<span style="color:#b8860b">:gen-class</span>))
+
+(<span style="color:#a2f;font-weight:bold">defn </span><span style="color:#b8860b">app</span> [<span style="color:#b8860b">req</span>]  <span style="color:#080;font-style:italic">; 定义一个函数名叫app，这个函数接受一个变量req，然后返回一个map。</span>
+  {<span style="color:#b8860b">:status</span> <span style="color:#666">200</span>
+   <span style="color:#b8860b">:headers</span> {<span style="color:#b44">&#34;Content-Type&#34;</span> <span style="color:#b44">&#34;text/html&#34;</span>}
+   <span style="color:#b8860b">:body</span> <span style="color:#b44">&#34;Hello HTTP!&#34;</span>})
+
+(<span style="color:#a2f;font-weight:bold">defn </span><span style="color:#b8860b">-main</span> []
+  (<span style="color:#a2f">println </span><span style="color:#b44">&#34;Hello, World!&#34;</span>)
+  (<span style="color:#00a000">http/run-server</span> <span style="color:#b8860b">app</span> {<span style="color:#b8860b">:port</span> <span style="color:#666">8080</span>})
+  (<span style="color:#a2f">println </span><span style="color:#b44">&#34;Server started on port 8080 ...&#34;</span>))
+</code></pre></div><h2 id="运行程序"><!-- raw HTML omitted -->4<!-- raw HTML omitted --> 运行程序</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ lein run
+</code></pre></div><p>应用程序会在端口8080 启动HTTP 服务。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">curl -i http://localhost:8080
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">HTTP/1.1 200 OK
+Content-Type: text/html
+Content-Length: 11
+Server: http-kit
+Date: Wed, 24 Jul 2019 23:55:08 GMT
+
+Hello HTTP!
+</code></pre></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+<br class="border-solid" /><ul class="list py-2 pl-0 bt w-85 w-80-ns w-55-l">
+  <li class="inline-block pt2">
+    <a href="https://github.com/tendant" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Open Github account in new tab</span>
+      <svg class="inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+  
+  <li class="inline-block">
+    <a href="mailto:tendant@gmail.com" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Contact via Email</span>
+      <svg class="icon inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  </ul><div class="f5 gray">
+  <p> &copy; 2015-2020 tendant </p>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-6332912-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+    </div>
+  </body>
+</html>

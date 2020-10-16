@@ -1,0 +1,580 @@
+<html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <title>CentOS - Random Stuff</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css" href="/css/output.css">
+    <link rel="stylesheet"  type="text/css" href="/css/customize.css">
+  </head>
+
+  <body class="text-base p-2">
+    <div class="container mx-auto text-base p-2">      <nav id="main-menu" class="main-menu font-hairline py-2" aria-label="Main Menu">
+        <ul class="list-reset">
+          
+          
+            <li class="inline  active ">
+              <a class="link text-2xl dim" href="/" title="Home">Home</a>
+            </li>
+          
+            <li class="inline ">
+              <a class="link text-2xl dim" href="/cn" title="中文">中文</a>
+            </li>
+          
+        </ul>
+      </nav>
+
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>CentOS</h1>
+      
+    </div>
+    
+<div class='entry-meta'>
+  <span class='posted-on'><svg class="inline-box h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+</svg>
+<span class='screen-reader-text'> </span>
+  <time class='entry-date' datetime='2017-09-03T00:00:00-07:00'>2017, Sep 03</time>
+</span>
+  
+
+    <ul id="tags" class="list-reset pl-0 py-1 inline">
+  
+  
+  </ul>
+
+
+</div>
+
+
+  </div>
+
+
+<div class='f6 container entry-content'>
+  <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><!-- raw HTML omitted -->1<!-- raw HTML omitted --> <a href="#network-configuration-files-location">network configuration files location</a></li>
+<li><!-- raw HTML omitted -->2<!-- raw HTML omitted --> <a href="#reload-all-configuration-file">reload all configuration file</a></li>
+<li><!-- raw HTML omitted -->3<!-- raw HTML omitted --> <a href="#reload-one-configuration-file">reload one configuration file</a></li>
+<li><!-- raw HTML omitted -->4<!-- raw HTML omitted --> <a href="#put-down-up-interface">Put down/up interface</a></li>
+<li><!-- raw HTML omitted -->5<!-- raw HTML omitted --> <a href="#create-a-network-bridge">Create a Network Bridge</a></li>
+<li><!-- raw HTML omitted -->6<!-- raw HTML omitted --> <a href="#kvm">KVM</a></li>
+<li><!-- raw HTML omitted -->7<!-- raw HTML omitted --> <a href="#selinux">SELinux</a></li>
+<li><!-- raw HTML omitted -->8<!-- raw HTML omitted --> <a href="#install-docker-container-for-emby">install docker container for emby</a></li>
+<li><!-- raw HTML omitted -->9<!-- raw HTML omitted --> <a href="#install-nginx">Install nginx</a></li>
+<li><!-- raw HTML omitted -->10<!-- raw HTML omitted --> <a href="#firewalld">Firewalld</a></li>
+<li><!-- raw HTML omitted -->11<!-- raw HTML omitted --> <a href="#nginx-502-bad-gateway-issue--centos-with-kvm-and-selinux-nginx-with-multiple-domains-and-proxy-pass">nginx 502 bad gateway issue (CentOS with KVM and SELinux, nginx with multiple domains and proxy_pass)</a></li>
+<li><!-- raw HTML omitted -->12<!-- raw HTML omitted --> <a href="#nginx-403-permission-denied">nginx 403 permission denied</a></li>
+<li><!-- raw HTML omitted -->13<!-- raw HTML omitted --> <a href="#letsencrypt-certbot-issue">letsencrypt certbot issue</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="network-configuration-files-location"><!-- raw HTML omitted -->1<!-- raw HTML omitted --> network configuration files location</h2>
+<p>ifcfg files in the <em>etc/sysconfig/network-scripts</em></p>
+<h2 id="reload-all-configuration-file"><!-- raw HTML omitted -->2<!-- raw HTML omitted --> reload all configuration file</h2>
+<pre><code class="language-src_shell" data-lang="src_shell">$ nmcli connection reload
+</code></pre><h2 id="reload-one-configuration-file"><!-- raw HTML omitted -->3<!-- raw HTML omitted --> reload one configuration file</h2>
+<pre><code class="language-src_shell" data-lang="src_shell">$ nmcli con load /etc/sysconfig/network-scripts/ifcfg-ifname
+</code></pre><h2 id="put-down-up-interface"><!-- raw HTML omitted -->4<!-- raw HTML omitted --> Put down/up interface</h2>
+<p>Changes made using tools such as nmcli do not require a reload but
+do require the associated interface to be put down and then up
+again. That can be done by using commands in the following format:</p>
+<pre><code class="language-src_shell" data-lang="src_shell">$ nmcli dev disconnect interface-name
+
+$ nmcli con up interface-name
+</code></pre><h2 id="create-a-network-bridge"><!-- raw HTML omitted -->5<!-- raw HTML omitted --> Create a Network Bridge</h2>
+<p><a href="https://access.redhat.com/documentation/en-US/Red%5FHat%5FEnterprise%5FLinux/7/html/Networking%5FGuide/sec-Network%5FBridging%5FUsing%5Fthe%5FCommand%5FLine%5FInterface.html">https://access.redhat.com/documentation/en-US/Red%5FHat%5FEnterprise%5FLinux/7/html/Networking%5FGuide/sec-Network%5FBridging%5FUsing%5Fthe%5FCommand%5FLine%5FInterface.html</a></p>
+<p><a href="https://jamielinux.com/docs/libvirt-networking-handbook/nat-based-network.html">https://jamielinux.com/docs/libvirt-networking-handbook/nat-based-network.html</a></p>
+<ol>
+<li>
+<p>To create a network bridge, create a file in the
+<em>etc/sysconfig/network-scripts</em> directory called ifcfg-brN,
+replacing N with the number for the interface, such as 0.</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">DEVICE=br0
+TYPE=Bridge
+BOOTPROTO=dhcp
+ONBOOT=yes
+DELAY=0
+IPV6INIT=&#34;yes&#34;
+IPV6_AUTOCONF=&#34;yes&#34;
+</code></pre></div></li>
+<li>
+<p>Add to your network controller configuration file</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">BRIDGE=br0
+</code></pre></div><p>Old Ethernet interface configuration: /etc/sysconfig/network-scripts/if-eno1</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">TYPE=Ethernet
+BOOTPROTO=dhcp
+DEFROUTE=yes
+PEERDNS=yes
+PEERROUTES=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_PEERDNS=yes
+IPV6_PEERROUTES=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=eno1
+UUID=ef9890fd-5289-490a-b49d-bed28c0e9531
+DEVICE=eno1
+ONBOOT=yes
+</code></pre></div></li>
+<li>
+<p>Enable network forwarding.  Add to /etc/sysctl.conf</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">net.ipv4.ip_forward = 1
+</code></pre></div><p>And load the file:</p>
+<pre><code class="language-src_shell" data-lang="src_shell"># sysctl -p /etc/sysctl.conf
+</code></pre></li>
+<li>
+<p>Restart the NetworkManager service so that the bridge you just created can get an IP address:</p>
+<pre><code class="language-src_shell" data-lang="src_shell"># systemctl restart NetworkManager
+</code></pre></li>
+<li>
+<p>Install network tools</p>
+</li>
+</ol>
+<h2 id="kvm"><!-- raw HTML omitted -->6<!-- raw HTML omitted --> KVM</h2>
+<ol>
+<li>
+<p>Check cpu info</p>
+<ul>
+<li>vmx is for Intel processors</li>
+<li>svm is for AMD processors</li>
+</ul>
+</li>
+<li>
+<p>Required packages</p>
+</li>
+<li>
+<p>Enable and start the libvirtd service:</p>
+</li>
+</ol>
+<h2 id="selinux"><!-- raw HTML omitted -->7<!-- raw HTML omitted --> SELinux</h2>
+<p><a href="https://linux.dell.com/files/whitepapers/KVM%5FVirtualization%5Fin%5FRHEL%5F7%5FMade%5FEasy.pdf">https://linux.dell.com/files/whitepapers/KVM%5FVirtualization%5Fin%5FRHEL%5F7%5FMade%5FEasy.pdf</a></p>
+<p>If you are using SELinux in Enforcing mode, then there are some things
+to consider. The most common issue is when you use a non - default
+directory for your VM images . If you use a directory other than
+/var/lib/libvirt/images , then you must change the security context
+for that directory .  For example, let&rsquo;s say you select /vm-images to
+place your VM images. (Run below commands as root)</p>
+<ol>
+<li>
+<p>Create the directory</p>
+<pre><code class="language-src_shell" data-lang="src_shell"># mkdir /vm-images
+</code></pre></li>
+<li>
+<p>Install the policycoreutils-python package (which contains the semanage SELinux utility )</p>
+<pre><code class="language-src_shell" data-lang="src_shell"># yum -y install policycoreutils-python
+</code></pre></li>
+<li>
+<p>Set the security context for the directory and everything under it:</p>
+<pre><code class="language-src_shell" data-lang="src_shell"># semanage fcontext --add -t virt_image_t '/vm-images(/.*)?'
+</code></pre><p>Verify it:</p>
+<pre><code class="language-src_shell" data-lang="src_shell"># semanage fcontext -l | grep virt_image_t
+</code></pre></li>
+<li>
+<p>Restore the security context. This will effectively change the context to virt_image_t</p>
+<pre><code class="language-src_shell" data-lang="src_shell"># ls -aZ /vm-images
+</code></pre></li>
+<li>
+<p>If you are going to export the directory /vm-imagesas a samba or
+NFS share, there are SELinux Booleans that need to be set as well:</p>
+<pre><code class="language-src_shell" data-lang="src_shell"># setsebool -P virt_use_samba 1
+# setsebool -P virt_use_nfs 1
+</code></pre><pre><code class="language-src_shell" data-lang="src_shell">virt-install \
+  --network bridge:br0 \
+  --name ubuntu-server \
+  --ram=1024 \
+  --vcpus=1 \
+  --disk path=/vm-images/ubuntu-server/ubuntu-server.img,size=10 \
+  --os-type linux \
+  --os-variant ubuntu16.04 \
+  --graphics none \
+  --location http://us.archive.ubuntu.com/ubuntu/dists/xenial/main/installer-amd64/ \
+  --extra-args='console=tty0 console=ttyS0,115200n8 serial'
+</code></pre><pre><code class="language-src_shell" data-lang="src_shell">virt-install \
+  --name ubuntu-video \
+  --network network=default \
+  --ram=1024 \
+  --vcpus=1 \
+  --disk path=/vm-images/ubuntu-video/ubuntu-video.img,size=10 \
+  --os-type linux \
+  --os-variant ubuntu16.04 \
+  --graphics none \
+  --location http://us.archive.ubuntu.com/ubuntu/dists/xenial/main/installer-amd64/ \
+  --extra-args='console=tty0 console=ttyS0,115200n8 serial'
+</code></pre><p>You can get a list of supported operating system variants with the `osinfo-query os` command.</p>
+<p>Pay attention to environment variable LIBVIRT_DEFAULT_URI</p>
+<p>LIBVIRT_DEFAULT_URI=qemu:///system</p>
+<pre><code class="language-src_shell" data-lang="src_shell">
+sudo virsh -c qemu:///system list --all
+
+# virsh list --all
+
+# virsh destroy ubuntu-server
+
+# virsh undefine ubuntu-server
+
+# virsh edit ubuntu-server
+
+# virsh dominfo vm1
+
+# virsh autostart vm1
+
+# virsh net-list
+
+# virsh net-edit default
+
+# virsh net-destroy default
+
+# virsh net-start default
+</code></pre></li>
+</ol>
+<p>Find ip address of kvm guest using nat networking</p>
+<p>$ arp -e</p>
+<ol>
+<li>Change kvm client network to nat</li>
+</ol>
+<!-- raw HTML omitted -->
+<h2 id="install-docker-container-for-emby"><!-- raw HTML omitted -->8<!-- raw HTML omitted --> install docker container for emby</h2>
+<pre><code class="language-src_shell" data-lang="src_shell">docker run -it --rm -v /usr/local/bin:/target \
+    -e &quot;APP_USER=centos&quot; \
+    -e &quot;APP_CONFIG=/home/centos/.embyserver&quot; \
+    emby/embyserver instl
+</code></pre><p>Install service</p>
+<pre><code class="language-src_shell" data-lang="src_shell">docker run -it --rm -v /etc/systemd/system:/target emby/embyserver instl service
+</code></pre><p>enable service at boot</p>
+<pre><code class="language-src_shell" data-lang="src_shell">$ sudo systemctl enable embyserver@username.service
+</code></pre><h2 id="install-nginx"><!-- raw HTML omitted -->9<!-- raw HTML omitted --> Install nginx</h2>
+<p>$ sudo yum install epel-release # add centos 7 epel repository
+$ sudo yum install nginx
+$ sudo systemctl start nginx em</p>
+<p>$ sudo firewall-cmd &ndash;permanent &ndash;zone=public &ndash;add-service=http
+$ sudo firewall-cmd &ndash;permanent &ndash;zone=public &ndash;add-service=https
+$ sudo firewall-cmd &ndash;reload</p>
+<p>$ sudo nginx -t</p>
+<p>conf.d/example.com.conf</p>
+<p>server {
+listen 80;</p>
+<p>server_name DOMAINNAME;  # Replace DOMAINNAME with the actual domain</p>
+<p>location / {
+proxy_set_header Host $host;
+proxy_set_header X-Real-IP $remote_addr;
+proxy_set_header X-Forwarded-For $remote_addr;</p>
+<pre><code>    proxy\_pass &lt;http://INTERNALIPADDRESS:PORT/&gt;;
+}
+</code></pre>
+<p>}</p>
+<h2 id="firewalld"><!-- raw HTML omitted -->10<!-- raw HTML omitted --> Firewalld</h2>
+<p>Port has to be open in host for kvm client to access host.</p>
+<p>To view open ports, use the following command.</p>
+<p>see services whose ports are open.</p>
+<p>see services whose ports are open and see open ports</p>
+<p>For a service to be permanently open, use the following command.</p>
+<p>To add a port, use the following command</p>
+<p>To run the firewall must be reloaded using the following command.</p>
+<h2 id="nginx-502-bad-gateway-issue--centos-with-kvm-and-selinux-nginx-with-multiple-domains-and-proxy-pass"><!-- raw HTML omitted -->11<!-- raw HTML omitted --> nginx 502 bad gateway issue (CentOS with KVM and SELinux, nginx with multiple domains and proxy_pass)</h2>
+<p>It turns out issue was due to SELinux.</p>
+<p>This should solve the problem:</p>
+<p>setsebool -P httpd_can_network_connect 1</p>
+<p>Details:</p>
+<p>Check for errors in the SELinux logs:</p>
+<p>sudo cat /var/log/audit/audit.log | grep nginx | grep denied
+And found that running the following commands fixed my issue:</p>
+<p>sudo cat /var/log/audit/audit.log | grep nginx | grep denied | audit2allow -M mynginx
+sudo semodule -i mynginx.pp</p>
+<h2 id="nginx-403-permission-denied"><!-- raw HTML omitted -->12<!-- raw HTML omitted --> nginx 403 permission denied</h2>
+<p>I experienced the same problem and it was due to SELinux.</p>
+<p>To check if SELinux is running:</p>
+<p>To disable SELinux until next reboot:</p>
+<p>Restart Nginx and see if the problem persists. If you would like to permanently alter the settings you can edit /etc/sysconfig/selinux</p>
+<p>If SELinux is your problem you can run the following to allow nginx to serve your www directory (make sure you turn SELinux back on before testing this.</p>
+<p>i.e,</p>
+<p>If you&rsquo;re still having issues take a look at the boolean flags in getsebool -a, in particular you may need to turn on httpd_can_network_connect for network access</p>
+<p>For me it was enough to allow http to serve my www directory.</p>
+<h2 id="letsencrypt-certbot-issue"><!-- raw HTML omitted -->13<!-- raw HTML omitted --> letsencrypt certbot issue</h2>
+<p>ImportError: &lsquo;pyOpenSSL&rsquo; module missing required functionality. Try upgrading to v0.14 or newer.</p>
+<p>$ wget  http//cbs.centos.org/kojifiles/packages/pyOpenSSL/16.2.0/3.el7/noarch/python2-pyOpenSSL-16.2.0-3.el7.noarch.rpm</p>
+<p>$ rpm -Uvh python2-pyOpenSSL-16.2.0-3.el7.noarch.rpm</p>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+<br class="border-solid" /><ul class="list py-2 pl-0 bt w-85 w-80-ns w-55-l">
+  <li class="inline-block pt2">
+    <a href="https://github.com/tendant" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Open Github account in new tab</span>
+      <svg class="inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+  
+  <li class="inline-block">
+    <a href="mailto:tendant@gmail.com" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Contact via Email</span>
+      <svg class="icon inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  </ul><div class="f5 gray">
+  <p> &copy; 2015-2020 tendant </p>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-6332912-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+    </div>
+  </body>
+</html>

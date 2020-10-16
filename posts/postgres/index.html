@@ -1,0 +1,441 @@
+<html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <title>Postgres - Random Stuff</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css" href="/css/output.css">
+    <link rel="stylesheet"  type="text/css" href="/css/customize.css">
+  </head>
+
+  <body class="text-base p-2">
+    <div class="container mx-auto text-base p-2">      <nav id="main-menu" class="main-menu font-hairline py-2" aria-label="Main Menu">
+        <ul class="list-reset">
+          
+          
+            <li class="inline  active ">
+              <a class="link text-2xl dim" href="/" title="Home">Home</a>
+            </li>
+          
+            <li class="inline ">
+              <a class="link text-2xl dim" href="/cn" title="中文">中文</a>
+            </li>
+          
+        </ul>
+      </nav>
+
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Postgres</h1>
+      
+    </div>
+    
+<div class='entry-meta'>
+  <span class='posted-on'><svg class="inline-box h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+</svg>
+<span class='screen-reader-text'> </span>
+  <time class='entry-date' datetime='2017-09-27T00:00:00-07:00'>2017, Sep 27</time>
+</span>
+  
+
+    <ul id="tags" class="list-reset pl-0 py-1 inline">
+  
+  
+  </ul>
+
+
+</div>
+
+
+  </div>
+
+
+<div class='f6 container entry-content'>
+  <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><!-- raw HTML omitted -->1<!-- raw HTML omitted --> <a href="#initial-setup-after-postgres-installation">Initial setup after postgres installation</a></li>
+<li><!-- raw HTML omitted -->2<!-- raw HTML omitted --> <a href="#create-user-role-and-database">Create user/role and database</a></li>
+<li><!-- raw HTML omitted -->3<!-- raw HTML omitted --> <a href="#enable-uuid">Enable uuid</a></li>
+<li><!-- raw HTML omitted -->4<!-- raw HTML omitted --> <a href="#query-date-field">Query date field</a></li>
+<li><!-- raw HTML omitted -->5<!-- raw HTML omitted --> <a href="#postgresql-alter-all-tables-owner-to-myuser">PostgreSQL: alter ALL tables OWNER TO myuser</a></li>
+<li><!-- raw HTML omitted -->6<!-- raw HTML omitted --> <a href="#debugging-postgres-database-issues">Debugging postgres database issues</a></li>
+<li><!-- raw HTML omitted -->7<!-- raw HTML omitted --> <a href="#find-rows-in-all-tables">Find rows in all tables</a></li>
+<li><!-- raw HTML omitted -->8<!-- raw HTML omitted --> <a href="#postgres-mac-osx-directory">postgres mac osx directory</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="initial-setup-after-postgres-installation"><!-- raw HTML omitted -->1<!-- raw HTML omitted --> Initial setup after postgres installation</h2>
+<p><a href="https://stackoverflow.com/a/26735105/8762905">https://stackoverflow.com/a/26735105/8762905</a></p>
+<ol>
+<li>
+<p>After installing Postgresql, open the file pg_hba.conf for Ubuntu
+it will be in /etc/postgresql/9.x/main and change this line:</p>
+<pre><code class="language-nil" data-lang="nil">local   all             postgres                                peer
+</code></pre><p>to</p>
+<pre><code class="language-nil" data-lang="nil">local   all             postgres                                trust
+</code></pre></li>
+<li>
+<p>Restart the server</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo service postgresql restart
+</code></pre></div></li>
+<li>
+<p>Login into psql and set your password</p>
+<pre><code class="language-nil" data-lang="nil">$ psql -U postgres
+postgres=# ALTER USER postgres with password 'your-pass';
+</code></pre></li>
+<li>
+<p>Finally change the pg_hba.conf from</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f">local</span>   all             postgres                                trust
+</code></pre></div><p>to</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#a2f">local</span>   all             postgres                                md5
+</code></pre></div></li>
+<li>
+<p>After restarting the postgresql server, you can access it with your own password</p>
+<p>Authentication methods details:</p>
+<blockquote>
+<p>trust - anyone who can connect to the server is authorized to access the database</p>
+<p>peer - use client&rsquo;s operating system user name as database user name to access it.</p>
+<p>md5 - password-base authentication</p>
+</blockquote>
+</li>
+</ol>
+<h2 id="create-user-role-and-database"><!-- raw HTML omitted -->2<!-- raw HTML omitted --> Create user/role and database</h2>
+<ol>
+<li>
+<p>connect to postgres</p>
+<pre><code class="language-src_shell" data-lang="src_shell">sudo -u postgres psql
+</code></pre></li>
+<li>
+<p>create role and database</p>
+<pre><code class="language-src_sql" data-lang="src_sql">CREATE USER testuser WITH PASSWORD 'testuser';
+CREATE DATABASE testdb ENCODING 'UTF8' OWNER testuser;
+GRANT ALL PRIVILEGES ON DATABASE testdb TO testuser;
+</code></pre></li>
+</ol>
+<h2 id="enable-uuid"><!-- raw HTML omitted -->3<!-- raw HTML omitted --> Enable uuid</h2>
+<pre><code class="language-src_sql" data-lang="src_sql">\connect testdb
+
+CREATE EXTENSION &quot;uuid-ossp&quot;;
+</code></pre><h2 id="query-date-field"><!-- raw HTML omitted -->4<!-- raw HTML omitted --> Query date field</h2>
+<pre><code class="language-src_sql" data-lang="src_sql">SELECT *
+FROM table
+WHERE update_date &gt;= '2013-05-03'::date
+AND update_date &lt; ('2013-05-03'::date + '1 day'::interval);
+</code></pre><h2 id="postgresql-alter-all-tables-owner-to-myuser"><!-- raw HTML omitted -->5<!-- raw HTML omitted --> PostgreSQL: alter ALL tables OWNER TO myuser</h2>
+<p>Get the list of tables</p>
+<pre><code class="language-src_sql" data-lang="src_sql">SELECT table_name from information_schema.tables WHERE table_schema = 'public';
+</code></pre><p>Create SQL for alter table owner</p>
+<pre><code class="language-src_sql" data-lang="src_sql">select 'ALTER TABLE ' || table_name || ' OWNER TO myuser;' from information_schema.tables where table_schema = 'public';
+</code></pre><p>Update table owner</p>
+<pre><code class="language-src_sql" data-lang="src_sql">psql -qAt -c &quot;select 'ALTER TABLE ' || table_name || ' OWNER TO myuser;'
+from information_schema.tables where table_schema = 'public'&quot; | psql
+</code></pre><p>Check table owner</p>
+<pre><code class="language-src_sql" data-lang="src_sql">select 'ALTER TABLE ' || table_name || ' OWNER TO myuser;' from information_schema.tables where table_schema = 'public';
+</code></pre><p>Tables:</p>
+<pre><code class="language-src_shell" data-lang="src_shell">for tbl in `psql -qAt -c &quot;select tablename from pg_tables where schemaname = 'public';&quot; YOUR_DB` ; do  psql -c &quot;alter table \&quot;$tbl\&quot; owner to NEW_OWNER&quot; YOUR_DB ; done
+</code></pre><p>Sequences:</p>
+<pre><code class="language-src_shell" data-lang="src_shell">for tbl in `psql -qAt -c &quot;select sequence_name from information_schema.sequences where sequence_schema = 'public';&quot; YOUR_DB` ; do  psql -c &quot;alter table \&quot;$tbl\&quot; owner to NEW_OWNER&quot; YOUR_DB ; done
+</code></pre><p>Views:</p>
+<pre><code class="language-src_shell" data-lang="src_shell">for tbl in `psql -qAt -c &quot;select table_name from information_schema.views where table_schema = 'public';&quot; YOUR_DB` ; do  psql -c &quot;alter table \&quot;$tbl\&quot; owner to NEW_OWNER&quot; YOUR_DB ; done
+</code></pre><h2 id="debugging-postgres-database-issues"><!-- raw HTML omitted -->6<!-- raw HTML omitted --> Debugging postgres database issues</h2>
+<p>When debugging postgres issues, in addition to the standard pg_top tool, often it can be useful to use this query:</p>
+<p>SELECT procpid,waiting,query_start,current_query FROM pg_stat_activity ORDER BY procpid;</p>
+<p>which shows the currently running backends and their activity. This is
+similar to the pg_top output, with the added advantage of showing the
+complete query, which can be valuable in debugging.</p>
+<p>To stop a runaway query, you can run SELECT pg_cancel_backend(pid int)
+or SELECT pg_terminate_backend(pid int) as the ‘postgres’ user. The
+former cancels the backend’s current query and the latter terminates
+the backend process. They are implemented by sending SIGINT and
+SIGTERM to the processes, respectively. We recommend against sending a
+Postgres process SIGKILL. Doing so will cause the database to kill all
+current connections, roll back any pending transactions, and enter
+recovery mode.</p>
+<h2 id="find-rows-in-all-tables"><!-- raw HTML omitted -->7<!-- raw HTML omitted --> Find rows in all tables</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#a2f;font-weight:bold">SELECT</span> schemaname,relname,n_live_tup
+<span style="color:#a2f;font-weight:bold">FROM</span> pg_stat_user_tables
+<span style="color:#a2f;font-weight:bold">ORDER</span> <span style="color:#a2f;font-weight:bold">BY</span> n_live_tup <span style="color:#a2f;font-weight:bold">DESC</span>;
+</code></pre></div><h2 id="postgres-mac-osx-directory"><!-- raw HTML omitted -->8<!-- raw HTML omitted --> postgres mac osx directory</h2>
+<p>/usr/local/var/postgres
+/usr/local/var/log</p>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+<br class="border-solid" /><ul class="list py-2 pl-0 bt w-85 w-80-ns w-55-l">
+  <li class="inline-block pt2">
+    <a href="https://github.com/tendant" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Open Github account in new tab</span>
+      <svg class="inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+  
+  <li class="inline-block">
+    <a href="mailto:tendant@gmail.com" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Contact via Email</span>
+      <svg class="icon inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  </ul><div class="f5 gray">
+  <p> &copy; 2015-2020 tendant </p>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-6332912-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+    </div>
+  </body>
+</html>

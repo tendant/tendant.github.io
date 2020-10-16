@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Random Stuff on 杂文</title>
+    <link>http://blog.leiwang.info/cn/</link>
+    <description>Recent content in Random Stuff on 杂文</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 09 Dec 2019 15:29:00 -0800</lastBuildDate>
+    
+	<atom:link href="http://blog.leiwang.info/cn/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Clojure Web 开发从零开始 之一 第一个Clojure 应用程序</title>
+      <link>http://blog.leiwang.info/cn/posts/clojure-web-dev/</link>
+      <pubDate>Mon, 09 Dec 2019 15:29:00 -0800</pubDate>
+      
+      <guid>http://blog.leiwang.info/cn/posts/clojure-web-dev/</guid>
+      <description>1项目准备 2新建一个新文件夹并命名(clj-httpbin)，然后初始化git repo 3创建项目文件 project.clj 4建立第一个Clojure 源代码文件 (src/clj_httpbin/core.clj). 5添加程序入口 6生成可执行Jar 文件  1项目准备  安装Java SDK 下载lein (https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein)，并放到PATH 里面(e.g. ~/bin) 设置lein 为可执行文件 (chmod a+x ~/bin/lein) 测试下面两个命令都可以正常执行  $ java -version $ lein 2新建一个新文件夹并命名(clj-httpbin)，然后初始化git repo $ mkdir clj-httpbin $ cd clj-httpbin $ git init 3创建项目文件 project.clj (defproject clj-httpbin &amp;#34;0.1.0&amp;#34; :description &amp;#34;Clojure httpbin clone&amp;#34; :url &amp;#34;http://example.com/FIXME&amp;#34; :license {:name &amp;#34;Eclipse Public License&amp;#34; :url &amp;#34;http://www.eclipse.org/legal/epl-v10.html&amp;#34;} :dependencies [[org.clojure/clojure &amp;#34;1.10.1&amp;#34;]]) $ lein repl ; 测试Clojure repl 可以正常运行 4建立第一个Clojure 源代码文件 (src/clj_httpbin/core.</description>
+    </item>
+    
+    <item>
+      <title>Clojure Web 开发从零开始 之二 简单web 应用</title>
+      <link>http://blog.leiwang.info/cn/posts/clojure-web-dev-2/</link>
+      <pubDate>Wed, 24 Jul 2019 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/cn/posts/clojure-web-dev-2/</guid>
+      <description>1添加Clojure 库 http-kit 2下载http-kit 库 3最简单的web app 4运行程序  上一篇文章里，我们已经建立了一个基本Clojure 程序，并且编译成了可执行的Jar 包，没看的，可以点这里Clojure Web 开发从零开始 之一.
+在这篇文章中，我们要把这个Clojure 应用程序变成一个HTTP 服务器。
+1添加Clojure 库 http-kit 在project.clj 文件dependencies 里面加上:
+[http-kit &amp;#34;2.3.0&amp;#34;] project.clj 文件会变成下面这样:
+(defproject clj-httpbin &amp;#34;0.1.0&amp;#34; :description &amp;#34;Clojure httpbin clone&amp;#34; :url &amp;#34;http://example.com/FIXME&amp;#34; :license {:name &amp;#34;Eclipse Public License&amp;#34; :url &amp;#34;http://www.eclipse.org/legal/epl-v10.html&amp;#34;} :main clj-httpbin.core :dependencies [[org.clojure/clojure &amp;#34;1.10.1&amp;#34;] [http-kit &amp;#34;2.3.0&amp;#34;]]) 2下载http-kit 库 $ lein deps ; 自动下载所有库 下载的库文件在~/.m2/repository 目录可以找到。你看的没错，这也是Maven local repository 的目录。
+如果你想知道这个程序依赖的所有库可以用下面的命令:
+$ lein deps :tree 3最简单的web app 首先定义一个函数app，这个函数接受一个变量req，req 包含客户端发过来的HTTP 请求的内容。app 函数的返回值会作为HTTP 回复的内容。</description>
+    </item>
+    
+    <item>
+      <title>Web 开发者的基本修养</title>
+      <link>http://blog.leiwang.info/cn/posts/web-basics/</link>
+      <pubDate>Sun, 21 Jul 2019 12:21:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/cn/posts/web-basics/</guid>
+      <description>1从用户在浏览器地址栏输入URL 开始，发生了什么？ 2DNS Query 3HTTPS 4负载均衡 5应用服务器  1从用户在浏览器地址栏输入URL 开始，发生了什么？ 2DNS Query 浏览器和服务器之间的连接是HTTP 连接，HTTP 是一个无状态的协议，HTTP 不 保留两个Request 之间的任何数据。HTTP 一般是建立在TCP/IP 传输层协议之上。 所以要建立HTTP 连接，浏览器需要知道服务器的IP 地址。浏览器通过查询DNS 找到服务器IP 地址。
+3HTTPS 因为HTTP 传输内容是明文，没有加密，所以客户端和服务器之间的任何一个第 三者都可以看到传输内容。HTTPS 是建立TLS(Transport Layer Security) 之上， 利用TLS 实现HTTP 加密传输。
+4负载均衡 在互联网上一个流行的服务，客户端数量往往是多于服务器，绝大多数情况下， 一台应用服务器难以支撑所有的客户端请求，所以在应用服务器之前会有负载均 衡服务器来把客户端请求发送给后台多个应用服务器。同时负载均衡服务器也可 以部署TLS 证书，HTTPS 的请求在负载均衡服务器上会被解密成原始HTTP 请求。 负载均衡服务器然后将HTTP 请求根据负载均衡策略发送给后台应用服务器。
+5应用服务器 后端开发人员的代码主要部署在应用服务器。应用服务器主要任务是接收HTTP 请求(Request)，然后执行业务逻辑，返回对应的HTTP 回复(Response)。
+应用服务器主要任务是执行业务逻辑，但是一般不保存数据。需要保存的数据一般保存在数据库。根据数据访问和存储特征，常用的数据库有内存数据库和传统关系型数据库。内存数据库（比如Redis）存取速度快，但是存储数据量小。关系型数据库（比如Postgres）存取速度慢，但是存储数据量大。
+我们一般用内存数据库Redis 保存用户Session 数据，用Postgres 保存业务数据。</description>
+    </item>
+    
+    <item>
+      <title>羊肉串</title>
+      <link>http://blog.leiwang.info/cn/posts/yangrouchuan/</link>
+      <pubDate>Tue, 16 Jun 2015 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/cn/posts/yangrouchuan/</guid>
+      <description>1材料 2步骤 3生火烤肉  每隔一段时间总会想吃羊肉串，可是正宗的羊肉串不是那么好找。其实如果工具齐全，自己做也不是很难。前两天第一次自己做了羊肉串，效果不错，在这里记录一下过程，和朋友分享。
+1材料 羊肉, 碳, 生抽, 糖, 盐, 油, 葱, 生姜, 孜然粉, 淀粉, 洋葱, 辣椒粉
+羊肉是Costco 买的新西兰羊腿肉
+2步骤   切肉 可以根据自己喜好来切，主要是切出来的肉要好咬，把纹路切断，不要顺纹路切成很长的条。
+我切的是比较薄的，2x3 厘米的长方形
+  腌肉
+ 将生抽，糖和盐混合好后倒入切好的肉中，搅拌均匀 依次放入油，葱，生姜，孜然。每放一样就要及时搅拌均匀 根据肉的多少，将大约两小勺淀粉用清水化开勾成很稀的芡，倒入肉中搅拌均匀 将切成小方块的洋葱导入肉中搅拌均匀 放入冰箱腌制一个晚上    串肉
+  第二天取出腌制好的肉，用铁签穿上肉，因为我们之前切得肉是长方形，所以串肉不能只穿一下，根据肉的大小，最少穿两下，穿的次数越多越好，尽量让肉全部附在签子上，而不是长长的吊在签子上。
+签子是在Home Depot 买的带手柄的不锈钢签子，签子本身是扁平的而不是圆形，这样烤的时候转动签子，肉也跟着转动。
+3生火烤肉 烤炉最好用国内街上羊肉串摊子上用的类似的烤炉，这边公园里面的bbq 炉子不适合烤羊肉串。
+将碳放在炉子上，点燃，让其充分燃烧，等碳烧到最高温度的时候最适合烤串，这时候碳表面应该都烧成白灰。之前等碳烧的时候可以烤烤其他的食物。
+当炉火温度够高的时候，将串放上去，烤的七、八成熟的时候可以根据自己口味放盐，孜然，辣椒。烤的时候要经常翻烤，让肉均匀受热。
+有机会，自己试试吧。不管怎样，起码所有食材的质量有保证。一般羊肉烤出来味道都不错。</description>
+    </item>
+    
+    <item>
+      <title>旧金山湾区水上运动</title>
+      <link>http://blog.leiwang.info/cn/posts/water-sports/</link>
+      <pubDate>Tue, 28 Apr 2015 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/cn/posts/water-sports/</guid>
+      <description>1风帆 (Windsurfing)  1.1地点   2风筝冲浪 （Kiteboarding）  2.1地点   3冲浪 (Surfing)  3.1地点   4帆船 (Sailing)  4.1地点    旧金山湾区除了那些出名的景点外，还有很多好玩的水上运动。比如风帆（Windsurfing），风筝冲浪（Kiteboarding），冲浪（Surfing） 和帆船（Sailing）。这些运动和其他活动不同，都需要经过学习才能开始享受运动带来的乐趣。不过这些运动从岸上欣赏也挺不错的。
+   运动 学习曲线 时间（每次） 成本 气象条件     风帆 平缓 中等 (3+小时) 高 风   风筝冲浪 陡峭 长 (4+小时) 高 风   冲浪 中等 短 (1.5+小时) 低 浪   帆船 平缓 长 (4+ 小时) 可低可高 微风无浪也可以    1风帆 (Windsurfing) 风帆入门比较容易，因为风帆的装备是根据水平来选择的。刚开始入门的时候，会选择比较小的帆和比较大的板，这样在水里比较稳定。随着水平的提高，板会越来越小，帆会越来越大。当然这也不是绝对，还有一个很重要的因素就是要看当时风力情况。</description>
+    </item>
+    
+  </channel>
+</rss>

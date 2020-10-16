@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My blog posts on Random Stuff</title>
+    <link>http://blog.leiwang.info/posts/</link>
+    <description>Recent content in My blog posts on Random Stuff</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 10 Sep 2019 00:00:00 -0700</lastBuildDate>
+    
+	<atom:link href="http://blog.leiwang.info/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Static website with HTTPS and customized domain using S3, CloudFront and Route 53</title>
+      <link>http://blog.leiwang.info/posts/aws-static-website-https-s3-cloudfront/</link>
+      <pubDate>Tue, 10 Sep 2019 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/aws-static-website-https-s3-cloudfront/</guid>
+      <description>1Create S3 bucket named as demo.example.com 2Create IAM user(user-demo.example.com) for uploading content 3Update S3 bucket policy (Update aws account, bucket name and username based on your own configuration) 4Enable static website hosting in S3 bucket properties and record Endpoint like below: 5Upload content to s3 and test website using above URL 6Request a SSL Certificate using &amp;ldquo;Certificate Manager&amp;rdquo; for your own domain 7Create Web distribution in CloudFront using below settings 8Create a CNAME record in Route 53 for your domain and point to CloudFront domain name  1Create S3 bucket named as demo.</description>
+    </item>
+    
+    <item>
+      <title>Helm</title>
+      <link>http://blog.leiwang.info/posts/helm-charts-kubernetes/</link>
+      <pubDate>Mon, 28 Jan 2019 00:00:00 -0800</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/helm-charts-kubernetes/</guid>
+      <description>1THREE BIG CONCEPTS: 2Commands  2.1&amp;lsquo;helm init&amp;rsquo;: Install Tiller into Kubernetes cluster 2.2‘helm search’: FINDING CHARTS 2.3‘helm install’: INSTALLING A PACKAGE 2.4Customizing the Chart Before Installing 2.5More Installation Methods 2.6‘helm upgrade’ AND ‘helm rollback’: UPGRADING A RELEASE, AND RECOVERING ON FAILURE 2.7‘helm delete’: DELETING A RELEASE 2.8‘helm repo’: WORKING WITH REPOSITORIES   3CREATING YOUR OWN CHARTS 4TILLER, NAMESPACES AND RBAC 5configmap &amp;amp; security  https://docs.helm.sh/using%5Fhelm/#using-helm https://docs.helm.sh/chart%5Ftemplate%5Fguide/
+1THREE BIG CONCEPTS: A Chart is a Helm package.</description>
+    </item>
+    
+    <item>
+      <title>Nginx quickstart</title>
+      <link>http://blog.leiwang.info/posts/nginx-quickstart/</link>
+      <pubDate>Wed, 03 Oct 2018 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/nginx-quickstart/</guid>
+      <description>1Install nginx 2nginx static website 3nginx application server using proxy_pass 4Restart nginx 5Enable firewall to port 80 and 443 6Install certbot 7Add letscrypt acme challenge 8Use certbot 9Backup folder /etc/letscrypt 10Explanation of let&amp;rsquo;s encrypt acme challenge  1Install nginx # For CentOS $ yum install nginx # For Ubuntu $ apt install nginx 2nginx static website Create file /etc/nginx/conf.d/www.example.com.conf
+server { listen 80; listen [::]:80; root /var/www/www.example.com; index index.html; server_name example.</description>
+    </item>
+    
+    <item>
+      <title>Fast.AI environment setup</title>
+      <link>http://blog.leiwang.info/posts/fastai-environment-setup/</link>
+      <pubDate>Mon, 27 Aug 2018 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/fastai-environment-setup/</guid>
+      <description> 1Install CUDA and cuDNN on Ubuntu 2Install pyenv 3Install pytorch 4Install python dependecies 5Install Jupyter Notebook  1Install CUDA and cuDNN on Ubuntu 2Install pyenv 3Install pytorch $ pip install torch torchtext torchvision 4Install python dependecies $ pip install bcolz bleach certifi cycler decorator entrypoints \  feather-format graphviz html5lib ipykernel ipython \  ipython-genutils ipywidgets isoweek jedi Jinja2 \  jsonschema MarkupSafe matplotlib numpy \  opencv-python pandas pandas_summary pickleshare \  Pillow plotnine ptyprocess Pygments pyparsing \  python-dateutil pytz PyYAML pyzmq scipy seaborn \  simplegeneric sklearn_pandas testpath \  tornado tqdm traitlets wcwidth \  webencodings widgetsnbextension 5Install Jupyter Notebook $ pip install jupyter jupyter-client jupyter-console jupyter-core </description>
+    </item>
+    
+    <item>
+      <title>Install CUDA and cuDNN on ubuntu 18.04</title>
+      <link>http://blog.leiwang.info/posts/install-cuda-and-cudnn-on-ubuntu-18-04/</link>
+      <pubDate>Sun, 26 Aug 2018 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/install-cuda-and-cudnn-on-ubuntu-18-04/</guid>
+      <description>1Install nvidia gpu driver 2Install and test CUDA 3Install cuDNN 4Install gcc-6 5Test cuDNN  1Install nvidia gpu driver $ sudo add-apt-repository ppa:graphics-drivers/ppa $ sudo apt update # (re-run if any warning/error messages) $ sudo apt-get install nvidia-&amp;lt;version&amp;gt; #(press tab to see latest). Reboot to let graphics driver take effect.
+2Install and test CUDA To use TensorFlow with NVIDIA GPUs, the first step is to install the CUDA Toolkit by following the official documentation.</description>
+    </item>
+    
+    <item>
+      <title>Python coding with Minecraft on PC</title>
+      <link>http://blog.leiwang.info/posts/python-coding-with-minecraft/</link>
+      <pubDate>Tue, 21 Aug 2018 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/python-coding-with-minecraft/</guid>
+      <description>1How it works 2Setup environment  2.1Install python 3.6.6 using pyenv 2.2Install Minecraft: Pi edition API Python Library (https://github.com/martinohanlon/mcpi) 2.3Install Java JDK 8+ 2.4Build spigot minecraft server 2.5Download or build RaspberryJuice 2.6Install Minecraft server and raspberryjuice plugin 2.7Configure Minecraft server server.properties (Optional)   3Start coding  3.1Start Minecraft server 3.2Start Minecraft client 3.3Start python commandline and start coding    1How it works 2Setup environment 2.1Install python 3.</description>
+    </item>
+    
+    <item>
+      <title>Davinci Resolve tips</title>
+      <link>http://blog.leiwang.info/posts/davinci-resolve-tips/</link>
+      <pubDate>Fri, 06 Jul 2018 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/davinci-resolve-tips/</guid>
+      <description>1How import still image 2How to copy transition from one clip to another  1How import still image Just add image into Media pool, each image will be exactly one frame, if you import image which has more than one frame, you might import your images as image sequence. Images will be treated as image sequence in same folder has sequential number in file name as postfix. When you import files, there is a check box to turn it off.</description>
+    </item>
+    
+    <item>
+      <title>Access KVM guest instance using machine name</title>
+      <link>http://blog.leiwang.info/posts/libvirt-kvm-guest-dns/</link>
+      <pubDate>Fri, 15 Jun 2018 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/libvirt-kvm-guest-dns/</guid>
+      <description>To access KVM guest instance using machine name from host
+  Install libvirt-nss
+# yum install libvirt-nss   And enable the NSS module with two “libvirt” keywords:
+Add below line to /etc/nsswitch.conf file
+hosts: files libvirt libvirt_guest dns myhostname   References:
+https://libvirt.org/nss.html
+https://lukas.zapletalovi.com/2017/10/definitive-solution-to-libvirt-guest-naming.html</description>
+    </item>
+    
+    <item>
+      <title>create-react-app</title>
+      <link>http://blog.leiwang.info/posts/create-react-app-tips/</link>
+      <pubDate>Wed, 30 May 2018 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/create-react-app-tips/</guid>
+      <description> 1Disable opening browser during server start  1Disable opening browser during server start  create file .env in the same directory where your package.json lives Insert line BROWSER=none to the file and save it. run yarn start and web browser will not be opened.  </description>
+    </item>
+    
+    <item>
+      <title>SSH Tunnel (SSH Port forwarding)</title>
+      <link>http://blog.leiwang.info/posts/ssh-tunnel/</link>
+      <pubDate>Thu, 24 May 2018 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/ssh-tunnel/</guid>
+      <description>1Local Forwarding 2Remote Forwarding 3Dynamic Port Forwarding: Use SSH Server as proxy 4SSH Server configuration 5SSH client options  1Local Forwarding Make Remote resource accessible on your local system.
+Forward a port from the client machine to the server machine. SSH Client listens for connections on a local configured port, and when it receives a connection, it tunnels the connection to an SSH Server. The server connects to a configured destination port, possibly on a different machine than SSH Server.</description>
+    </item>
+    
+    <item>
+      <title>Discord bot using python errbot</title>
+      <link>http://blog.leiwang.info/posts/python-discord-errbot/</link>
+      <pubDate>Wed, 23 May 2018 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/python-discord-errbot/</guid>
+      <description>1Install errbot with pyenv 2Install discord for errbot 3discord api for commandline  1Install errbot with pyenv pip install cryptography pip install cryptography --global-option=build_ext --global-option=&amp;#34;-L/usr/local/opt/openssl/lib&amp;#34; --global-option=&amp;#34;-I/usr/local/opt/openssl/include&amp;#34; # Mac OSX pip install cffi pip install errbot 2Install discord for errbot $ git clone https://github.com/gbin/err-backend-discord.git $ pip install discord and add:
+BACKEND = &#39;Discord&#39; BOT_EXTRA_BACKEND_DIR = &#39;/path_to/err-backend-discord&#39; Authentication
+Create an application, then a bot user and you can directly use the token of the bot user in your config.</description>
+    </item>
+    
+    <item>
+      <title>pyenv</title>
+      <link>http://blog.leiwang.info/posts/python-pyenv/</link>
+      <pubDate>Wed, 23 May 2018 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/python-pyenv/</guid>
+      <description>1Install pyenv 2Update pyenv 3pyenv pip error 4Missing sqlite3 header file  1Install pyenv   checkout pyenv
+$ git clone https://github.com/pyenv/pyenv.git ~/.pyenv   Define environment variable PYENV_ROOT
+$ echo &amp;#39;export PYENV_ROOT=&amp;#34;$HOME/.pyenv&amp;#34;&amp;#39; &amp;gt;&amp;gt; ~/.bashrc $ echo &amp;#39;export PATH=&amp;#34;$PYENV_ROOT/bin:$PATH&amp;#34;&amp;#39; &amp;gt;&amp;gt; ~/.bashrc or Ubuntu/Fedora ~/.bashrc or Zsh: ~/.zshenv
+  Add pyenv init into shell
+$ echo -e &amp;#39;if command -v pyenv 1&amp;gt;/dev/null 2&amp;gt;&amp;amp;1; then \n eval &amp;#34;$(pyenv init -)&amp;#34;\n fi&amp;#39; &amp;gt;&amp;gt; ~/.</description>
+    </item>
+    
+    <item>
+      <title>Git Tips</title>
+      <link>http://blog.leiwang.info/posts/tips-git/</link>
+      <pubDate>Mon, 23 Apr 2018 11:17:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/tips-git/</guid>
+      <description>1Submodule 2Make a git repository a bare repo 3Fetch one branch from remote repository  1Submodule $ git submodule add git-repos-url Since the URL in the .gitmodules file is what other people will first try to clone/fetch from, make sure to use a URL that they can access if possible. For example, if you use a different URL to push to than others would to pull from, use the one that others have access to.</description>
+    </item>
+    
+    <item>
+      <title>CSS tips</title>
+      <link>http://blog.leiwang.info/posts/tips-css/</link>
+      <pubDate>Mon, 23 Apr 2018 11:15:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/tips-css/</guid>
+      <description> 1media query 2cssstats.com generate css stats for sites  1media query The device will ignore your media queries, without following tag on HTML.
+&amp;lt;!DOCTYPE html&amp;gt; &amp;lt;html lang=&amp;#34;en-us&amp;#34;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width&amp;#34;&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; 2cssstats.com generate css stats for sites </description>
+    </item>
+    
+    <item>
+      <title>set-default-font: &#34;Symbol&#39;s function definition is void&#34; after upgrading Emacs to 27.0.50</title>
+      <link>http://blog.leiwang.info/posts/emacs-set-default-font/</link>
+      <pubDate>Tue, 27 Mar 2018 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/emacs-set-default-font/</guid>
+      <description>After upgrading Emacs to 27.0.50, set-default-font function is gone. To fix this issue, change set-default-font to set-frame-font.
+Checked some old version of Emacs found below document:
+ set-default-font is an alias for ‘set-frame-font’ in ‘frame.el’.
+(set-default-font FONT &amp;amp;optional KEEP-SIZE FRAMES)
+This function is obsolete since 23.1; use ‘set-frame-font’ instead.
+Set the default font to FONT. When called interactively, prompt for the name of a font, and use that font on the selected frame.</description>
+    </item>
+    
+    <item>
+      <title>Writing IAM Policies: How to Grant Access to an Amazon S3 Bucket</title>
+      <link>http://blog.leiwang.info/posts/aws-iam-policy-for-s3/</link>
+      <pubDate>Wed, 27 Sep 2017 01:02:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/aws-iam-policy-for-s3/</guid>
+      <description>1Policy for Programmatic Access 2Policy for Console Access  1Policy for Programmatic Access The following sample IAM policy grants programmatic read-write access to the test bucket:
+Sample 1: Programmatic read and write permissions
+{ &amp;quot;Version&amp;quot;: &amp;quot;2012-10-17&amp;quot;, &amp;quot;Statement&amp;quot;: [ { &amp;quot;Effect&amp;quot;: &amp;quot;Allow&amp;quot;, &amp;quot;Action&amp;quot;: [&amp;quot;s3:ListBucket&amp;quot;], &amp;quot;Resource&amp;quot;: [&amp;quot;arn:aws:s3:::test&amp;quot;] }, { &amp;quot;Effect&amp;quot;: &amp;quot;Allow&amp;quot;, &amp;quot;Action&amp;quot;: [ &amp;quot;s3:PutObject&amp;quot;, &amp;quot;s3:GetObject&amp;quot;, &amp;quot;s3:DeleteObject&amp;quot; ], &amp;quot;Resource&amp;quot;: [&amp;quot;arn:aws:s3:::test/*&amp;quot;] } ] } The policy is separated into two parts because the ListBucket action requires permissions on the bucket while the other actions require permissions on the objects in the bucket.</description>
+    </item>
+    
+    <item>
+      <title>Immediately terminate SSH session</title>
+      <link>http://blog.leiwang.info/posts/ssh/</link>
+      <pubDate>Wed, 27 Sep 2017 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/ssh/</guid>
+      <description>Reference: https://askubuntu.com/a/29952
+Normal keys are forwarded over the ssh session, so none of those will work. Instead, use the escape sequences. To kill the current session hit subsequently Enter ↵, ~, ..
+More of these escape sequences can be listed with Enter ↵, ~, ?:
+Supported escape sequences:
+~. - terminate session ~B - send a BREAK to the remote system ~R - Request rekey (SSH protocol 2 only) ~# - list forwarded connections ~?</description>
+    </item>
+    
+    <item>
+      <title>Networking Tools</title>
+      <link>http://blog.leiwang.info/posts/networking-tools/</link>
+      <pubDate>Wed, 27 Sep 2017 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/networking-tools/</guid>
+      <description> 1Start a particular openvpn client 2test server networking using UDP 3find opening port 4find which process opening a particular port  1Start a particular openvpn client $ sudo systemctl start openvpn@client1 $ sudo systemctl status openvpn@client1 2test server networking using UDP $ nc -v -z -u server port # test server:port using UDP 3find opening port $ netstat -an 4find which process opening a particular port $ lsof -i :5000 </description>
+    </item>
+    
+    <item>
+      <title>Postgres</title>
+      <link>http://blog.leiwang.info/posts/postgres/</link>
+      <pubDate>Wed, 27 Sep 2017 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/postgres/</guid>
+      <description>1Initial setup after postgres installation 2Create user/role and database 3Enable uuid 4Query date field 5PostgreSQL: alter ALL tables OWNER TO myuser 6Debugging postgres database issues 7Find rows in all tables 8postgres mac osx directory  1Initial setup after postgres installation https://stackoverflow.com/a/26735105/8762905
+  After installing Postgresql, open the file pg_hba.conf for Ubuntu it will be in /etc/postgresql/9.x/main and change this line:
+local all postgres peer to
+local all postgres trust   Restart the server</description>
+    </item>
+    
+    <item>
+      <title>quick start with aws ecscli</title>
+      <link>http://blog.leiwang.info/posts/aws-ecscli/</link>
+      <pubDate>Wed, 27 Sep 2017 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/aws-ecscli/</guid>
+      <description>  Install ecscli Mac OSX:
+$ sudo curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-darwin-amd64-latest Linux:
+$ sudo curl -o /usr/local/bin/ecs-cli https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-linux-amd64-latest   Apply execute permissions to the binary.
+$ sudo chmod +x /usr/local/bin/ecs-cli   Verify that the CLI is working properly.
+$ ecs-cli --version   Configure awscli
+$ ecs-cli configure --region us-west-2 --access-key $AWS_ACCESS_KEY_ID --secret-key $AWS_SECRET_ACCESS_KEY --cluster ecs-cli-demo   </description>
+    </item>
+    
+    <item>
+      <title>ECS Notes</title>
+      <link>http://blog.leiwang.info/posts/ecs/</link>
+      <pubDate>Mon, 04 Sep 2017 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/ecs/</guid>
+      <description>1ECS Policy 2ECS role for elb 3ecs load balancer 4ecs elb 5ecs ec2 container service 6aws elb should be available in same availability zone as instances 7manually create ecs application load balancer 8aws ecs application elb 9Trouble shooting aws elb 10ecs_service with load_balancers 11TODOAdded more details for for ecs_service load_balancers doc 12ECS auto-scaling 13ECS container instance troubl shooting  1ECS Policy The following IAM policy allows permission to create and list clusters.</description>
+    </item>
+    
+    <item>
+      <title>CentOS</title>
+      <link>http://blog.leiwang.info/posts/centos/</link>
+      <pubDate>Sun, 03 Sep 2017 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/centos/</guid>
+      <description>1network configuration files location 2reload all configuration file 3reload one configuration file 4Put down/up interface 5Create a Network Bridge 6KVM 7SELinux 8install docker container for emby 9Install nginx 10Firewalld 11nginx 502 bad gateway issue (CentOS with KVM and SELinux, nginx with multiple domains and proxy_pass) 12nginx 403 permission denied 13letsencrypt certbot issue  1network configuration files location ifcfg files in the etc/sysconfig/network-scripts
+2reload all configuration file $ nmcli connection reload 3reload one configuration file $ nmcli con load /etc/sysconfig/network-scripts/ifcfg-ifname 4Put down/up interface Changes made using tools such as nmcli do not require a reload but do require the associated interface to be put down and then up again.</description>
+    </item>
+    
+    <item>
+      <title>Docker</title>
+      <link>http://blog.leiwang.info/posts/docker/</link>
+      <pubDate>Sun, 03 Sep 2017 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/docker/</guid>
+      <description>1ARG and ENV 2Find host ip in mac and linux 3Debug existed docker container 4Debug JAVA  1ARG and ENV From Dockerfile reference:
+The ARG instruction defines a variable that users can pass at build-time to the builder with the docker build command using the --build-arg &amp;lt;varname&amp;gt;=&amp;lt;value&amp;gt; flag. The ENV instruction sets the environment variable &amp;lt;key&amp;gt; to the value &amp;lt;value&amp;gt;. The environment variables set using ENV will persist when a container is run from the resulting image.</description>
+    </item>
+    
+    <item>
+      <title>Two ways of running command in subshell</title>
+      <link>http://blog.leiwang.info/posts/subshell/</link>
+      <pubDate>Sat, 02 Sep 2017 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/subshell/</guid>
+      <description>() runs commands in the subshell, so by exit you are exiting from subshell and returning to the parent shell. Use braces {} if you want to run commands in the current shell.
+From bash manual:
+(list) list is executed in a subshell environment. Variable assignments and builtin commands that affect the shell&amp;rsquo;s environment do not remain in effect after the command completes. The return status is the exit status of list.</description>
+    </item>
+    
+    <item>
+      <title>pfSense tips</title>
+      <link>http://blog.leiwang.info/posts/pfsense-tips/</link>
+      <pubDate>Tue, 27 Jun 2017 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/pfsense-tips/</guid>
+      <description> 1openvpn 2NAT port forwarding for exposing local services  1openvpn  Create CA, Server Certificate and client certificate Create openvpn server using created CA and Server Certificate Create firewall rule to allow vpn(port 1194) access Install addon for exporting vpn client profile Create Nat rule on openvpn port to allow vpn client to access local network  2NAT port forwarding for exposing local services  Enable nat port forwarding Add firewall rule in pfsense for allowing incoming traffic Enable firewall in forwarded host Add domain override (DNS Forwarder or DNS Resolver) for allowing local clients to access same domain  </description>
+    </item>
+    
+    <item>
+      <title>Ubuntu Tips</title>
+      <link>http://blog.leiwang.info/posts/ubuntu-tips/</link>
+      <pubDate>Mon, 05 Sep 2016 00:00:00 -0700</pubDate>
+      
+      <guid>http://blog.leiwang.info/posts/ubuntu-tips/</guid>
+      <description>1Show all network interfaces 2Remove ppa and trusted key 3Upgrade kernel 4apt Install oracle jdk with 404 error 5Manual install CryFS (Ubuntu) 6vsftpd 7Dell Aurora Ethernet network 8Install Nvidia driver 9Install KVM 10Enable upnp for dlna  1Show all network interfaces $ ifconfig -a $ lshw -C network $ ip a s # ip link set dev eno1 up # enable network device eno1 # ip link set dev eno1 down # disable network device eno1 2Remove ppa and trusted key   remove file from /etc/apt/sources.</description>
+    </item>
+    
+  </channel>
+</rss>

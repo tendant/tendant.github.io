@@ -1,0 +1,147 @@
+/* open-sans-regular - latin */
+@font-face {
+  /* font-family: 'Open Sans', '-apple-system', 'BlinkMacSystemFont', 'Helvetica Neue', 'Microsoft YaHei', 'Source Han Sans SC', 'Noto Sans CJK SC', 'WenQuanYi Micro Hei', 'Heiti', sans-serif; */
+  font-family: "TIBch", "Classic Grotesque W01", "Helvetica Neue", Arial, "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "WenQuanYi Micro Hei", 'SimSun', sans-serif
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/open-sans-v15-latin/open-sans-v15-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Open Sans Regular'), local('OpenSans-Regular'),
+       url('/fonts/open-sans-v15-latin/open-sans-v15-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('/fonts/open-sans-v15-latin/open-sans-v15-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('/fonts/open-sans-v15-latin/open-sans-v15-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('/fonts/open-sans-v15-latin/open-sans-v15-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('/fonts/open-sans-v15-latin/open-sans-v15-latin-regular.svg#OpenSans') format('svg'); /* Legacy iOS */
+}
+
+html {
+  line-height: 1.25;
+  letter-spacing: normal;
+}
+
+body {
+  font-family: "TIBch", "Classic Grotesque W01", "Helvetica Neue", Arial, "Hiragino Sans GB", "STHeiti", "Microsoft YaHei", "WenQuanYi Micro Hei", 'SimSun', sans-serif;
+  color: #333;
+}
+
+a {
+  color: #01579f;
+  background-color: transparent;
+  padding-bottom: 2px;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration:underline;
+}
+
+li a {
+  color: #6E7173;
+}
+
+.entry-content p {
+  line-height: 1.5;
+}
+
+.toc {
+  line-height: 1.25;
+}
+
+.open-sans {
+  font-family: "Open Sans";
+}
+
+ul.pagination {
+  list-style-type: none;
+  font-size: 1.0rem;
+  padding-left: var(--spacing-none);
+}
+
+ul.pagination li {
+  display: inline;
+}
+
+h2, h3, h4 {
+  color: rgba(0,0,0,0.70);
+}
+
+h3 {
+  font-style: normal;
+}
+
+ul.pagination {
+  list-style: none;
+  font-size: 1.25rem;
+  padding-top: 10px;
+}
+
+ul.pagination li {
+  padding-right: 10px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: grey;
+}
+
+nav ul li.active a{
+  text-decoration: underline;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border-width: 2px;
+}
+
+/* Code block style begin */
+
+pre {
+  line-height: 1.6em;
+  padding-bottom: 3em;
+  padding: 0.1em 0.5em 0.7 em 0.7em;
+  overflow: auto;
+  width: 75%;
+}
+
+code, samp, kbd {
+  font-family: "Courier New", Courier, monospace, sans-serif;
+  text-align: left;
+  color: #555;
+  font-size: 1rem;
+}
+
+pre code {
+  line-height: 1.6em;
+  font-size: 1rem;
+}
+
+pre {
+  padding: 0.1em 0.5em 0.7em 0.7em;
+  border-left: 6px solid #ccc;
+  margin: 1.7em 0 1.7em 0.3em;
+  overflow: auto;
+  width: 93%;
+}
+
+/* IE7 and IE6 */
+*:first-child+html pre {
+  padding-bottom: 1em;
+  overflow-y: hidden;
+  overflow: visible;
+  overflow-x: auto;
+}
+
+* html pre {
+  padding-bottom: 1em;
+  overflow: visible;
+  overflow-x: auto;
+}
+
+blockquote {
+  font-family: "Courier New", Courier, monospace, sans-serif;
+  font-size: 1rem;
+}
+
+/* Code block style end */

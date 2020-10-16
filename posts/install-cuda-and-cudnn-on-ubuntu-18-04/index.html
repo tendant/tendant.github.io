@@ -1,0 +1,383 @@
+<html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <title>Install CUDA and cuDNN on ubuntu 18.04 - Random Stuff</title>
+    <meta name="keywords" content="cuda cudnn ubuntu">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css" href="/css/output.css">
+    <link rel="stylesheet"  type="text/css" href="/css/customize.css">
+  </head>
+
+  <body class="text-base p-2">
+    <div class="container mx-auto text-base p-2">      <nav id="main-menu" class="main-menu font-hairline py-2" aria-label="Main Menu">
+        <ul class="list-reset">
+          
+          
+            <li class="inline  active ">
+              <a class="link text-2xl dim" href="/" title="Home">Home</a>
+            </li>
+          
+            <li class="inline ">
+              <a class="link text-2xl dim" href="/cn" title="中文">中文</a>
+            </li>
+          
+        </ul>
+      </nav>
+
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Install CUDA and cuDNN on ubuntu 18.04</h1>
+      
+    </div>
+    
+<div class='entry-meta'>
+  <span class='posted-on'><svg class="inline-box h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+</svg>
+<span class='screen-reader-text'> </span>
+  <time class='entry-date' datetime='2018-08-26T00:00:00-07:00'>2018, Aug 26</time>
+</span>
+  
+
+    <ul id="tags" class="list-reset pl-0 py-1 inline">
+  
+  
+  </ul>
+
+
+</div>
+
+
+  </div>
+
+
+<div class='f6 container entry-content'>
+  <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><!-- raw HTML omitted -->1<!-- raw HTML omitted --> <a href="#install-nvidia-gpu-driver">Install nvidia gpu driver</a></li>
+<li><!-- raw HTML omitted -->2<!-- raw HTML omitted --> <a href="#install-and-test-cuda">Install and test CUDA</a></li>
+<li><!-- raw HTML omitted -->3<!-- raw HTML omitted --> <a href="#install-cudnn">Install cuDNN</a></li>
+<li><!-- raw HTML omitted -->4<!-- raw HTML omitted --> <a href="#install-gcc-6">Install gcc-6</a></li>
+<li><!-- raw HTML omitted -->5<!-- raw HTML omitted --> <a href="#test-cudnn">Test cuDNN</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="install-nvidia-gpu-driver"><!-- raw HTML omitted -->1<!-- raw HTML omitted --> Install nvidia gpu driver</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo add-apt-repository ppa:graphics-drivers/ppa
+$ sudo apt update <span style="color:#080;font-style:italic"># (re-run if any warning/error messages)</span>
+$ sudo apt-get install nvidia-&lt;version&gt; <span style="color:#080;font-style:italic">#(press tab to see latest).</span>
+</code></pre></div><p>Reboot to let graphics driver take effect.</p>
+<h2 id="install-and-test-cuda"><!-- raw HTML omitted -->2<!-- raw HTML omitted --> Install and test CUDA</h2>
+<p>To use TensorFlow with NVIDIA GPUs, the first step is to install the CUDA Toolkit by following the official documentation. Steps for CUDA 9.0 for quick reference as follow:</p>
+<p>Navigate to <a href="https://developer.nvidia.com/cuda-downloads">https://developer.nvidia.com/cuda-downloads</a>.</p>
+<p>For 9.0: <a href="https://developer.nvidia.com/cuda-90-download-archive">https://developer.nvidia.com/cuda-90-download-archive</a></p>
+<p>Select Linux, x86_64, Ubuntu, 16.04, deb (local).</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo dpkg -i cuda-repo-ubuntu1704-9-0-local_9.0.176-1_amd64.deb <span style="color:#666">(</span>this is the deb file you<span style="">&#39;</span>ve downloaded<span style="color:#666">)</span>
+$ sudo apt-get update
+$ sudo apt-get install cuda
+
+<span style="color:#080;font-style:italic"># Hold the cuda version</span>
+$ sudo apt-mark hold cuda
+
+<span style="color:#080;font-style:italic"># Then install all patches.</span>
+
+$ <span style="color:#a2f">export</span> <span style="color:#b8860b">PATH</span><span style="color:#666">=</span>/usr/local/cuda/bin<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">PATH</span>:+:<span style="color:#b68;font-weight:bold">${</span><span style="color:#b8860b">PATH</span><span style="color:#b68;font-weight:bold">}}</span>
+</code></pre></div><h2 id="install-cudnn"><!-- raw HTML omitted -->3<!-- raw HTML omitted --> Install cuDNN</h2>
+<p>Download cuDNN from: <a href="https://developer.nvidia.com/rdp/cudnn-download">https://developer.nvidia.com/rdp/cudnn-download</a>,</p>
+<ol>
+<li>cuDNN v7.2.1 Runtime Library for Ubuntu16.04 (Deb)</li>
+<li>cuDNN v7.2.1 Developer Library for Ubuntu16.04 (Deb)</li>
+<li>cuDNN v7.2.1 Code Samples and User Guide for Ubuntu16.04 (Deb)</li>
+</ol>
+<!-- raw HTML omitted -->
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo dpkg -i libcudnn7_7.0.3.11-1+cuda9.0_amd64.deb libcudnn7-dev_7.0.3.11-1+cuda9.0_amd64.deb libcudnn7-doc_7.0.3.11-1+cuda9.0_amd64.deb
+$ sudo apt-mark hold libcudnn7 libcudnn7-dev libcudnn7-doc
+</code></pre></div><h2 id="install-gcc-6"><!-- raw HTML omitted -->4<!-- raw HTML omitted --> Install gcc-6</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ sudo apt install gcc-6 g++-6
+$ sudo ln -s /usr/bin/gcc-6 /usr/local/cuda/bin/gcc
+$ sudo ln -s /usr/bin/g++-6 /usr/local/cuda/bin/g++
+</code></pre></div><h2 id="test-cudnn"><!-- raw HTML omitted -->5<!-- raw HTML omitted --> Test cuDNN</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ cp -r /usr/src/cuDNN_samples_v7 /tmp
+$ <span style="color:#a2f">cd</span> /tmp/cuDNN_samples_v7/mnistcuDNN
+$ make clean <span style="color:#666">&amp;&amp;</span> make
+$ ./mnistcuDNN
+</code></pre></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+<br class="border-solid" /><ul class="list py-2 pl-0 bt w-85 w-80-ns w-55-l">
+  <li class="inline-block pt2">
+    <a href="https://github.com/tendant" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Open Github account in new tab</span>
+      <svg class="inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+  
+  <li class="inline-block">
+    <a href="mailto:tendant@gmail.com" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Contact via Email</span>
+      <svg class="icon inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  </ul><div class="f5 gray">
+  <p> &copy; 2015-2020 tendant </p>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-6332912-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+    </div>
+  </body>
+</html>

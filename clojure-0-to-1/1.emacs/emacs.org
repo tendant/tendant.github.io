@@ -1,0 +1,138 @@
+#+EXPORT_FILE_NAME: index.html
+#+REVEAL_ROOT: ../reveal.js
+#+REVEAL_HLEVEL: 2
+#+REVEAL_THEME: white
+#+REVEAL_PLUGINS: (highlight)
+#+REVEAL_HIGHLIGHT_CSS: ../reveal.js/dist/theme/solarized.css
+#+REVEAL_EXTRA_CSS: ../custom.css
+#+REVEAL_HASH: false
+#+Title: Emacs
+#+Author: Lei Wang
+#+Date: 2020-10-08
+#+OPTIONS: toc:nil
+#+REVEAL_INIT_OPTIONS: slideNumber:"c/t", history:false, hash:true, respondToHashChanges:false, hashOneBasedIndex:true, fragmentInURL: true, transition: "default"
+#+OPTIONS: num:nil
+#+OPTIONS: time_stamp_file:nil
+
+* Clojure 开发入门 - 开发环境Emacs
+1. 安装Emacs
+2. Emacs 简单介绍
+3. 配置Clojure 开发环境
+4. Clojure Repl
+5. Clojure 开发基本操作
+
+** 安装Emacs (macOS)
+
+#+begin_src shell
+$ brew cask install emacs
+#+end_src
+
+
+** 安装Emacs (Windows 10)
+
+下载地址:
+#+begin_src shell
+http://mirrors.ustc.edu.cn/gnu/emacs/windows
+#+end_src
+
+** Emacs 简单介绍 - 界面
+   :PROPERTIES:
+   :REVEAL_DATA_TRANSITION: none
+   :END:
+
+[[./img/emacs-ui.png]]
+
+** Emacs 简单介绍 - 菜单
+   :PROPERTIES:
+   :REVEAL_DATA_TRANSITION: none
+   :END:
+
+[[./img/emacs-ui-menu-bar.png]]
+
+** Emacs 简单介绍 - 工具栏
+   :PROPERTIES:
+   :REVEAL_DATA_TRANSITION: none
+   :END:
+
+[[./img/emacs-ui-tool-bar.png]]
+
+** Emacs 简单介绍 - window/窗口
+   :PROPERTIES:
+   :REVEAL_DATA_TRANSITION: none
+   :END:
+
+[[./img/emacs-ui-window.png]]
+
+** Emacs 简单介绍 - mode line / 模式栏
+   :PROPERTIES:
+   :REVEAL_DATA_TRANSITION: none
+   :END:
+
+[[./img/emacs-ui-mode-line.png]]
+
+** Emacs 简单介绍 - minibuffer
+   :PROPERTIES:
+   :REVEAL_DATA_TRANSITION: none
+   :END:
+
+[[./img/emacs-ui-minibuffer.png]]
+
+** Emacs 简单介绍 - frame / 框架
+   :PROPERTIES:
+   :REVEAL_DATA_TRANSITION: none
+   :END:
+
+[[./img/emacs-ui-frame.png]]
+
+** Emacs 简单介绍 - 整体介绍
+   :PROPERTIES:
+   :REVEAL_DATA_TRANSITION: none
+   :END:
+
+[[./img/emacs-ui-all.png]]
+
+** Demo
+
+1. 创建文件
+2. 基本编辑功能：输入，删除，拷贝，粘贴
+3. 保存文件
+
+** Emacs 常用组合键
+|---------------+------------|
+| Ctrl-g        | 停当前操作 |
+| Ctrl-x Ctrl-s | 保存       |
+| Ctrl-x Ctrl-c | 退出       |
+|---------------+------------|
+
+** Emacs 配置文件
+
+配置文件路径: ~/.emacs.d/init.el
+
+#+begin_src shell
+$ export PRELUDE_INSTALL_DIR="$HOME"
+$ export PRELUDE_URL="https://gitee.com/tendant/prelude.git"
+$ curl -L https://gitee.com/tendant/prelude/raw/master/utils/installer.sh | sh
+#+end_src
+
+** 配置Clojure 开发环境
+打开文件：~/.emacs.d/prelude-modules.el
+
+将下面这行
+#+begin_src lisp
+;; (require 'prelude-clojure)
+#+end_src
+
+改成
+#+begin_src lisp
+(require 'prelude-clojure)
+#+end_src
+
+安装lein
+
+https://github.com/technomancy/leiningen
+
+** 创建第一个Clojure 项目
+
+#+begin_src shell
+$ lein new app demo
+#+end_src

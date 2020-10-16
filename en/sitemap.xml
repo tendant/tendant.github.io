@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/</loc>
+    <lastmod>2019-09-10T00:00:00-07:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="http://blog.leiwang.info/cn/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://blog.leiwang.info/posts/"
+                />
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/</loc>
+    <lastmod>2019-09-10T00:00:00-07:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="http://blog.leiwang.info/cn/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://blog.leiwang.info/"
+                />
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/aws-static-website-https-s3-cloudfront/</loc>
+    <lastmod>2019-09-10T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/helm-charts-kubernetes/</loc>
+    <lastmod>2019-01-28T00:00:00-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/nginx-quickstart/</loc>
+    <lastmod>2018-10-03T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/fastai-environment-setup/</loc>
+    <lastmod>2018-08-27T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/install-cuda-and-cudnn-on-ubuntu-18-04/</loc>
+    <lastmod>2018-08-26T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/python-coding-with-minecraft/</loc>
+    <lastmod>2018-08-21T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/davinci-resolve-tips/</loc>
+    <lastmod>2018-07-06T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/libvirt-kvm-guest-dns/</loc>
+    <lastmod>2018-06-15T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/create-react-app-tips/</loc>
+    <lastmod>2018-05-30T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/ssh-tunnel/</loc>
+    <lastmod>2018-05-24T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/python-discord-errbot/</loc>
+    <lastmod>2018-05-23T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/python-pyenv/</loc>
+    <lastmod>2018-05-23T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/tips-git/</loc>
+    <lastmod>2018-04-23T11:17:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/tips-css/</loc>
+    <lastmod>2018-04-23T11:15:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/emacs-set-default-font/</loc>
+    <lastmod>2018-03-27T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/aws-iam-policy-for-s3/</loc>
+    <lastmod>2017-09-27T01:02:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/ssh/</loc>
+    <lastmod>2017-09-27T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/networking-tools/</loc>
+    <lastmod>2017-09-27T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/postgres/</loc>
+    <lastmod>2017-09-27T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/aws-ecscli/</loc>
+    <lastmod>2017-09-27T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/ecs/</loc>
+    <lastmod>2017-09-04T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/centos/</loc>
+    <lastmod>2017-09-03T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/docker/</loc>
+    <lastmod>2017-09-03T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/subshell/</loc>
+    <lastmod>2017-09-02T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/pfsense-tips/</loc>
+    <lastmod>2017-06-27T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/posts/ubuntu-tips/</loc>
+    <lastmod>2016-09-05T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="http://blog.leiwang.info/cn/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://blog.leiwang.info/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/tags/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="http://blog.leiwang.info/cn/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://blog.leiwang.info/tags/"
+                />
+  </url>
+  
+</urlset>

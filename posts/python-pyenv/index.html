@@ -1,0 +1,399 @@
+<html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <title>pyenv - Random Stuff</title>
+    <meta name="keywords" content="python pyenv installation">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css" href="/css/output.css">
+    <link rel="stylesheet"  type="text/css" href="/css/customize.css">
+  </head>
+
+  <body class="text-base p-2">
+    <div class="container mx-auto text-base p-2">      <nav id="main-menu" class="main-menu font-hairline py-2" aria-label="Main Menu">
+        <ul class="list-reset">
+          
+          
+            <li class="inline  active ">
+              <a class="link text-2xl dim" href="/" title="Home">Home</a>
+            </li>
+          
+            <li class="inline ">
+              <a class="link text-2xl dim" href="/cn" title="中文">中文</a>
+            </li>
+          
+        </ul>
+      </nav>
+
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>pyenv</h1>
+      
+    </div>
+    
+<div class='entry-meta'>
+  <span class='posted-on'><svg class="inline-box h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+</svg>
+<span class='screen-reader-text'> </span>
+  <time class='entry-date' datetime='2018-05-23T00:00:00-07:00'>2018, May 23</time>
+</span>
+  
+
+    <ul id="tags" class="list-reset pl-0 py-1 inline">
+  
+  
+  </ul>
+
+
+</div>
+
+
+  </div>
+
+
+<div class='f6 container entry-content'>
+  <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><!-- raw HTML omitted -->1<!-- raw HTML omitted --> <a href="#install-pyenv">Install pyenv</a></li>
+<li><!-- raw HTML omitted -->2<!-- raw HTML omitted --> <a href="#update-pyenv">Update pyenv</a></li>
+<li><!-- raw HTML omitted -->3<!-- raw HTML omitted --> <a href="#pyenv-pip-error">pyenv pip error</a></li>
+<li><!-- raw HTML omitted -->4<!-- raw HTML omitted --> <a href="#missing-sqlite3-header-file">Missing sqlite3 header file</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="install-pyenv"><!-- raw HTML omitted -->1<!-- raw HTML omitted --> Install pyenv</h2>
+<ol>
+<li>
+<p>checkout pyenv</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+</code></pre></div></li>
+<li>
+<p>Define environment variable PYENV_ROOT</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ <span style="color:#a2f">echo</span> <span style="color:#b44">&#39;export PYENV_ROOT=&#34;$HOME/.pyenv&#34;&#39;</span> &gt;&gt; ~/.bashrc
+
+$ <span style="color:#a2f">echo</span> <span style="color:#b44">&#39;export PATH=&#34;$PYENV_ROOT/bin:$PATH&#34;&#39;</span> &gt;&gt; ~/.bashrc
+</code></pre></div><p>or Ubuntu/Fedora ~/.bashrc or Zsh: ~/.zshenv</p>
+</li>
+<li>
+<p>Add pyenv init into shell</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ <span style="color:#a2f">echo</span> -e <span style="color:#b44">&#39;if command -v pyenv 1&gt;/dev/null 2&gt;&amp;1; then \n  eval &#34;$(pyenv init -)&#34;\n fi&#39;</span> &gt;&gt; ~/.bashrc
+</code></pre></div></li>
+<li>
+<p>Restart shell</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ <span style="color:#a2f">exec</span> <span style="color:#b44">&#34;</span><span style="color:#b8860b">$SHELL</span><span style="color:#b44">&#34;</span>
+</code></pre></div></li>
+<li>
+<p>Install build-essential and libssl-dev in Ubuntu</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ apt install build-essential libssl-dev
+</code></pre></div><p>Recommended: make build-essential libssl-dev zlib1g-dev libbz2-dev libsqlite3-dev libreadline-dev readline-common libffi-dev</p>
+<p><a href="https://github.com/pyenv/pyenv/wiki/Common-build-problems">https://github.com/pyenv/pyenv/wiki/Common-build-problems</a></p>
+<p>Recommended (ubuntu 16.04): zlib-devel bzip2-devel sqlite sqlite-devel openssl-devel</p>
+<p>For Ubuntu 18.04: zlib1g-dev libbz2-dev sqlite libsqlite3-dev openssl libreadline-dev readline-common</p>
+<p>Centos:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ yum install openssl-devel
+</code></pre></div></li>
+</ol>
+<!-- raw HTML omitted -->
+<ol>
+<li>
+<p>List all available python version</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ pyenv install -l
+</code></pre></div></li>
+<li>
+<p>Install specific version of python</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ pyenv install 3.5.5
+
+$ pyenv global 3.5.5  <span style="color:#080;font-style:italic"># set 3.5.5 as global version</span>
+</code></pre></div></li>
+</ol>
+<h2 id="update-pyenv"><!-- raw HTML omitted -->2<!-- raw HTML omitted --> Update pyenv</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">$ <span style="color:#a2f">cd</span> ~/.pyenv <span style="color:#666">&amp;&amp;</span> git pull -r
+</code></pre></div><h2 id="pyenv-pip-error"><!-- raw HTML omitted -->3<!-- raw HTML omitted --> pyenv pip error</h2>
+<p>find_packages() got an unexpected keyword argument &lsquo;include&rsquo;</p>
+<p><a href="https://github.com/quantopian/zipline/issues/1278">https://github.com/quantopian/zipline/issues/1278</a></p>
+<p>To install a particular version in my python env is:</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pip install <span style="color:#b8860b">setuptools</span><span style="color:#666">==</span>&lt;specific version&gt;
+</code></pre></div><p>or (upgrading to the latest):</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">pip install -U setuptools
+</code></pre></div><h2 id="missing-sqlite3-header-file"><!-- raw HTML omitted -->4<!-- raw HTML omitted --> Missing sqlite3 header file</h2>
+<p>CFLAGS=&rdquo;-I$(xcrun &ndash;show-sdk-path)/usr/include&rdquo; pyenv install -v 2.7.14</p>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+<br class="border-solid" /><ul class="list py-2 pl-0 bt w-85 w-80-ns w-55-l">
+  <li class="inline-block pt2">
+    <a href="https://github.com/tendant" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Open Github account in new tab</span>
+      <svg class="inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+  
+  <li class="inline-block">
+    <a href="mailto:tendant@gmail.com" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Contact via Email</span>
+      <svg class="icon inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  </ul><div class="f5 gray">
+  <p> &copy; 2015-2020 tendant </p>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-6332912-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+    </div>
+  </body>
+</html>

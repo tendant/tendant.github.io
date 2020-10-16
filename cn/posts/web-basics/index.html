@@ -1,0 +1,239 @@
+<html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <title>Web 开发者的基本修养 - 杂文</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css" href="/css/output.css">
+    <link rel="stylesheet"  type="text/css" href="/css/customize.css">
+  </head>
+
+  <body class="text-base p-2">
+    <div class="container mx-auto text-base p-2">      <nav id="main-menu" class="main-menu font-hairline py-2" aria-label="Main Menu">
+        <ul class="list-reset">
+          
+          
+            <li class="inline ">
+              <a class="link text-2xl dim" href="/" title="Home">Home</a>
+            </li>
+          
+            <li class="inline  active ">
+              <a class="link text-2xl dim" href="/cn" title="中文">中文</a>
+            </li>
+          
+        </ul>
+      </nav>
+
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Web 开发者的基本修养</h1>
+      
+    </div>
+    
+<div class='entry-meta'>
+  <span class='posted-on'><svg class="inline-box h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+</svg>
+<span class='screen-reader-text'> </span>
+  <time class='entry-date' datetime='2019-07-21T12:21:00-07:00'>2019, Jul 21</time>
+</span>
+  
+
+    <ul id="tags" class="list-reset pl-0 py-1 inline">
+  
+  
+  </ul>
+
+
+</div>
+
+
+  </div>
+
+
+<div class='f6 container entry-content'>
+  <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><!-- raw HTML omitted -->1<!-- raw HTML omitted --> <a href="#%E4%BB%8E%E7%94%A8%E6%88%B7%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E8%BE%93%E5%85%A5url-%E5%BC%80%E5%A7%8B-%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88">从用户在浏览器地址栏输入URL 开始，发生了什么？</a></li>
+<li><!-- raw HTML omitted -->2<!-- raw HTML omitted --> <a href="#dns-query">DNS Query</a></li>
+<li><!-- raw HTML omitted -->3<!-- raw HTML omitted --> <a href="#https">HTTPS</a></li>
+<li><!-- raw HTML omitted -->4<!-- raw HTML omitted --> <a href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1">负载均衡</a></li>
+<li><!-- raw HTML omitted -->5<!-- raw HTML omitted --> <a href="#%E5%BA%94%E7%94%A8%E6%9C%8D%E5%8A%A1%E5%99%A8">应用服务器</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="从用户在浏览器地址栏输入url-开始-发生了什么"><!-- raw HTML omitted -->1<!-- raw HTML omitted --> 从用户在浏览器地址栏输入URL 开始，发生了什么？</h2>
+<p><!-- raw HTML omitted --></p>
+<h2 id="dns-query"><!-- raw HTML omitted -->2<!-- raw HTML omitted --> DNS Query</h2>
+<p>浏览器和服务器之间的连接是HTTP 连接，HTTP 是一个无状态的协议，HTTP 不
+保留两个Request 之间的任何数据。HTTP 一般是建立在TCP/IP 传输层协议之上。
+所以要建立HTTP 连接，浏览器需要知道服务器的IP 地址。浏览器通过查询DNS
+找到服务器IP 地址。</p>
+<h2 id="https"><!-- raw HTML omitted -->3<!-- raw HTML omitted --> HTTPS</h2>
+<p>因为HTTP 传输内容是明文，没有加密，所以客户端和服务器之间的任何一个第
+三者都可以看到传输内容。HTTPS 是建立TLS(Transport Layer Security) 之上，
+利用TLS 实现HTTP 加密传输。</p>
+<h2 id="负载均衡"><!-- raw HTML omitted -->4<!-- raw HTML omitted --> 负载均衡</h2>
+<p>在互联网上一个流行的服务，客户端数量往往是多于服务器，绝大多数情况下，
+一台应用服务器难以支撑所有的客户端请求，所以在应用服务器之前会有负载均
+衡服务器来把客户端请求发送给后台多个应用服务器。同时负载均衡服务器也可
+以部署TLS 证书，HTTPS 的请求在负载均衡服务器上会被解密成原始HTTP 请求。
+负载均衡服务器然后将HTTP 请求根据负载均衡策略发送给后台应用服务器。</p>
+<h2 id="应用服务器"><!-- raw HTML omitted -->5<!-- raw HTML omitted --> 应用服务器</h2>
+<p>后端开发人员的代码主要部署在应用服务器。应用服务器主要任务是接收HTTP 请求(Request)，然后执行业务逻辑，返回对应的HTTP 回复(Response)。</p>
+<p>应用服务器主要任务是执行业务逻辑，但是一般不保存数据。需要保存的数据一般保存在数据库。根据数据访问和存储特征，常用的数据库有内存数据库和传统关系型数据库。内存数据库（比如Redis）存取速度快，但是存储数据量小。关系型数据库（比如Postgres）存取速度慢，但是存储数据量大。</p>
+<p>我们一般用内存数据库Redis 保存用户Session 数据，用Postgres 保存业务数据。</p>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+<br class="border-solid" /><ul class="list py-2 pl-0 bt w-85 w-80-ns w-55-l">
+  <li class="inline-block pt2">
+    <a href="https://github.com/tendant" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Open Github account in new tab</span>
+      <svg class="inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+  
+  <li class="inline-block">
+    <a href="mailto:tendant@gmail.com" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Contact via Email</span>
+      <svg class="icon inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  </ul><div class="f5 gray">
+  <p> &copy; 2015-2020 tendant </p>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-6332912-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+    </div>
+  </body>
+</html>

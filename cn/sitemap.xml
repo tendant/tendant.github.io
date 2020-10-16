@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>http://blog.leiwang.info/cn/posts/clojure-web-dev/</loc>
+    <lastmod>2019-12-09T15:29:00-08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/cn/</loc>
+    <lastmod>2019-12-09T15:29:00-08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://blog.leiwang.info/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="http://blog.leiwang.info/cn/"
+                />
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/cn/posts/</loc>
+    <lastmod>2019-12-09T15:29:00-08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://blog.leiwang.info/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="http://blog.leiwang.info/cn/posts/"
+                />
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/cn/posts/clojure-web-dev-2/</loc>
+    <lastmod>2019-07-24T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/cn/posts/web-basics/</loc>
+    <lastmod>2019-07-21T12:21:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/cn/posts/yangrouchuan/</loc>
+    <lastmod>2015-06-16T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/cn/posts/water-sports/</loc>
+    <lastmod>2015-04-28T00:00:00-07:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/cn/categories/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://blog.leiwang.info/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="http://blog.leiwang.info/cn/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>http://blog.leiwang.info/cn/tags/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="http://blog.leiwang.info/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="cn"
+                href="http://blog.leiwang.info/cn/tags/"
+                />
+  </url>
+  
+</urlset>

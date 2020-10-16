@@ -1,0 +1,408 @@
+<html lang="en">
+
+  <head>
+    <meta name="viewport" content="width=device-width">
+    <title>Static website with HTTPS and customized domain using S3, CloudFront and Route 53 - Random Stuff</title>
+    
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link rel="stylesheet"  type="text/css" href="/css/output.css">
+    <link rel="stylesheet"  type="text/css" href="/css/customize.css">
+  </head>
+
+  <body class="text-base p-2">
+    <div class="container mx-auto text-base p-2">      <nav id="main-menu" class="main-menu font-hairline py-2" aria-label="Main Menu">
+        <ul class="list-reset">
+          
+          
+            <li class="inline  active ">
+              <a class="link text-2xl dim" href="/" title="Home">Home</a>
+            </li>
+          
+            <li class="inline ">
+              <a class="link text-2xl dim" href="/cn" title="中文">中文</a>
+            </li>
+          
+        </ul>
+      </nav>
+
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Static website with HTTPS and customized domain using S3, CloudFront and Route 53</h1>
+      
+    </div>
+    
+<div class='entry-meta'>
+  <span class='posted-on'><svg class="inline-box h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+</svg>
+<span class='screen-reader-text'> </span>
+  <time class='entry-date' datetime='2019-09-10T00:00:00-07:00'>2019, Sep 10</time>
+</span>
+  
+
+    <ul id="tags" class="list-reset pl-0 py-1 inline">
+  
+  
+  </ul>
+
+
+</div>
+
+
+  </div>
+
+
+<div class='f6 container entry-content'>
+  <!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<ul>
+<li><!-- raw HTML omitted -->1<!-- raw HTML omitted --> <a href="#create-s3-bucket-named-as-demo-dot-example-dot-com">Create S3 bucket named as demo.example.com</a></li>
+<li><!-- raw HTML omitted -->2<!-- raw HTML omitted --> <a href="#create-iam-user--user-demo-dot-example-dot-com--for-uploading-content">Create IAM user(user-demo.example.com) for uploading content</a></li>
+<li><!-- raw HTML omitted -->3<!-- raw HTML omitted --> <a href="#update-s3-bucket-policy--update-aws-account-bucket-name-and-username-based-on-your-own-configuration">Update S3 bucket policy (Update aws account, bucket name and username based on your own configuration)</a></li>
+<li><!-- raw HTML omitted -->4<!-- raw HTML omitted --> <a href="#enable-static-website-hosting-in-s3-bucket-properties-and-record-endpoint-like-below">Enable static website hosting in S3 bucket properties and record Endpoint like below:</a></li>
+<li><!-- raw HTML omitted -->5<!-- raw HTML omitted --> <a href="#upload-content-to-s3-and-test-website-using-above-url">Upload content to s3 and test website using above URL</a></li>
+<li><!-- raw HTML omitted -->6<!-- raw HTML omitted --> <a href="#request-a-ssl-certificate-using-certificate-manager-for-your-own-domain">Request a SSL Certificate using &ldquo;Certificate Manager&rdquo; for your own domain</a></li>
+<li><!-- raw HTML omitted -->7<!-- raw HTML omitted --> <a href="#create-web-distribution-in-cloudfront-using-below-settings">Create Web distribution in CloudFront using below settings</a></li>
+<li><!-- raw HTML omitted -->8<!-- raw HTML omitted --> <a href="#create-a-cname-record-in-route-53-for-your-domain-and-point-to-cloudfront-domain-name">Create a CNAME record in Route 53 for your domain and point to CloudFront domain name</a></li>
+</ul>
+<!-- raw HTML omitted -->
+<h2 id="create-s3-bucket-named-as-demo-dot-example-dot-com"><!-- raw HTML omitted -->1<!-- raw HTML omitted --> Create S3 bucket named as demo.example.com</h2>
+<h2 id="create-iam-user--user-demo-dot-example-dot-com--for-uploading-content"><!-- raw HTML omitted -->2<!-- raw HTML omitted --> Create IAM user(user-demo.example.com) for uploading content</h2>
+<h2 id="update-s3-bucket-policy--update-aws-account-bucket-name-and-username-based-on-your-own-configuration"><!-- raw HTML omitted -->3<!-- raw HTML omitted --> Update S3 bucket policy (Update aws account, bucket name and username based on your own configuration)</h2>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
+    <span style="color:#008000;font-weight:bold">&#34;Version&#34;</span>: <span style="color:#b44">&#34;2012-10-17&#34;</span>,
+    <span style="color:#008000;font-weight:bold">&#34;Statement&#34;</span>: [
+        {
+            <span style="color:#008000;font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#b44">&#34;PublicReadGetObject&#34;</span>,
+            <span style="color:#008000;font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#b44">&#34;Allow&#34;</span>,
+            <span style="color:#008000;font-weight:bold">&#34;Principal&#34;</span>: <span style="color:#b44">&#34;*&#34;</span>,
+            <span style="color:#008000;font-weight:bold">&#34;Action&#34;</span>: <span style="color:#b44">&#34;s3:GetObject&#34;</span>,
+            <span style="color:#008000;font-weight:bold">&#34;Resource&#34;</span>: <span style="color:#b44">&#34;arn:aws:s3:::demo.example.com/*&#34;</span>
+        },
+        {
+            <span style="color:#008000;font-weight:bold">&#34;Sid&#34;</span>: <span style="color:#b44">&#34;Allow-deployment-To-Bucket&#34;</span>,
+            <span style="color:#008000;font-weight:bold">&#34;Effect&#34;</span>: <span style="color:#b44">&#34;Allow&#34;</span>,
+            <span style="color:#008000;font-weight:bold">&#34;Principal&#34;</span>: {
+                <span style="color:#008000;font-weight:bold">&#34;AWS&#34;</span>: <span style="color:#b44">&#34;arn:aws:iam::&lt;aws-account&gt;:user/user-demo.example.com&#34;</span>
+            },
+            <span style="color:#008000;font-weight:bold">&#34;Action&#34;</span>: [
+                <span style="color:#b44">&#34;s3:ListBucket&#34;</span>,
+                <span style="color:#b44">&#34;s3:PutObject&#34;</span>,
+                <span style="color:#b44">&#34;s3:PutObjectAcl&#34;</span>,
+                <span style="color:#b44">&#34;s3:GetObject&#34;</span>,
+                <span style="color:#b44">&#34;s3:GetObjectAcl&#34;</span>,
+                <span style="color:#b44">&#34;s3:DeleteObject&#34;</span>
+            ],
+            <span style="color:#008000;font-weight:bold">&#34;Resource&#34;</span>: [
+                <span style="color:#b44">&#34;arn:aws:s3:::demo.example.com&#34;</span>,
+                <span style="color:#b44">&#34;arn:aws:s3:::demo.example.com/*&#34;</span>
+            ]
+        }
+    ]
+}
+</code></pre></div><h2 id="enable-static-website-hosting-in-s3-bucket-properties-and-record-endpoint-like-below"><!-- raw HTML omitted -->4<!-- raw HTML omitted --> Enable static website hosting in S3 bucket properties and record Endpoint like below:</h2>
+<p><a href="http://demo.example.com.s3-website-us-west-2.amazonaws.com">http://demo.example.com.s3-website-us-west-2.amazonaws.com</a></p>
+<h2 id="upload-content-to-s3-and-test-website-using-above-url"><!-- raw HTML omitted -->5<!-- raw HTML omitted --> Upload content to s3 and test website using above URL</h2>
+<h2 id="request-a-ssl-certificate-using-certificate-manager-for-your-own-domain"><!-- raw HTML omitted -->6<!-- raw HTML omitted --> Request a SSL Certificate using &ldquo;Certificate Manager&rdquo; for your own domain</h2>
+<h2 id="create-web-distribution-in-cloudfront-using-below-settings"><!-- raw HTML omitted -->7<!-- raw HTML omitted --> Create Web distribution in CloudFront using below settings</h2>
+<table>
+<thead>
+<tr>
+<th>Origin Domain Name</th>
+<th>demo.example.com.s3-website-us-west-2.amazonaws.com</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Alternate Domain name</td>
+<td>demo.example.com</td>
+</tr>
+<tr>
+<td>SSL Certificate</td>
+<td>Custom SSL Certificate, and choose requested SSL Certificate in previous step</td>
+</tr>
+</tbody>
+</table>
+<p>It takes some time for this to take effect.</p>
+<p>If you need update website content, you might need to invalidate CloudFront edge caches in some cases.</p>
+<h2 id="create-a-cname-record-in-route-53-for-your-domain-and-point-to-cloudfront-domain-name"><!-- raw HTML omitted -->8<!-- raw HTML omitted --> Create a CNAME record in Route 53 for your domain and point to CloudFront domain name</h2>
+<p>Once DNS is working, you should be able to access your website using HTTPS with your own domain.</p>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+<br class="border-solid" /><ul class="list py-2 pl-0 bt w-85 w-80-ns w-55-l">
+  <li class="inline-block pt2">
+    <a href="https://github.com/tendant" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Open Github account in new tab</span>
+      <svg class="inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2px" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+    
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+    
+
+  
+
+  
+  <li class="inline-block">
+    <a href="mailto:tendant@gmail.com" target="_blank" rel="noopener">
+      <span class="screen-reader-text hidden">Contact via Email</span>
+      <svg class="icon inline-block h-8 w-8" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" stroke="#455a64" fill="none">
+
+        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+        <polyline points="22,6 12,13 2,6"></polyline>
+
+      </svg>
+    </a>
+  </li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  </ul><div class="f5 gray">
+  <p> &copy; 2015-2020 tendant </p>
+</div>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-6332912-4', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+
+    </div>
+  </body>
+</html>
